@@ -1,0 +1,21 @@
+{
+  "name": "petal-ui",
+  "version": "0.0.1",
+  "description": "petal-ui",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyour-cn/petal-ui.git"
+  },
+  "author": "kyour-cn",
+  "license": "MIT license",
+  "bugs": {
+    "url": "https://github.com/kyour-cn/petal-ui/issues"
+  },
+  "homepage": "https://github.com/kyour-cn/petal-ui#readme",
+
+  "devDependencies": {
+    "vite": "4.0.5",
+    "vue": "^3.2.45"
+  }
+}

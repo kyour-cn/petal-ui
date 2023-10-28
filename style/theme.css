@@ -1,0 +1,26 @@
+:root {
+
+    /* 行为相关颜色 */
+    --pui-color-primary: #007DFF;
+    --pui-color-success: #2ECC71;
+    --pui-color-warning: #FFB703;
+    --pui-color-danger: #E74C3C;
+    --pui-color-purple: #6831FF;
+
+    /* 文字基本颜色、其他辅助色 */
+    /* 用于重量级文字信息、标题 */
+    --pui-color-title: #181818;
+    /* 用于普通级段落信息、引导词 */
+    --pui-color-section: #333333;
+    /* 用于次要标题内容 */
+    --pui-color-subtitle: #7F7F7F;
+    /* 用于底部标签、描述、次要文字信息 */
+    --pui-color-label: #B2B2B2;
+    /* 用于辅助、次要信息、禁用文字等。如：待输入状态描述文字，已点击按钮文字 */
+    --pui-color-minor: #CCCCCC;
+    --pui-color-white: #FFFFFF;
+    /* 链接颜色 */
+    --pui-color-link: #465CFF;
+    
+}
+
