@@ -1,6 +1,6 @@
 <template>
-    <view class="petal-btn" :style="style">
-        <slot>
+    <view class="petal-btn" :style="style" @click="emits('click')">
+        <slot name="default">
             <text v-text="props.text"></text>
         </slot>
     </view>
@@ -56,6 +56,8 @@ const props = defineProps({
         default: false
     }
 })
+
+const emits = defineEmits(["click"]);
 
 const sizeMap = {
     "mini": {w: 0, h: 40, fontSize: 16, round: 20},

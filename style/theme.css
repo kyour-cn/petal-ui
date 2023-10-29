@@ -25,10 +25,14 @@
     /* 对应的深色模式 */
     --pui-color-title-dark: #DCDDDF;
 
+
     --pui-bg-page: #F3F4F6;
     --pui-bg-body: #FFFFFF;
     --pui-bg-page-dark: #000000;
     --pui-bg-body-dark: #212224;
+
+    --pui-border-color: #CECECE;
+    --pui-border-color-dark: #4C4D4F;
 
 }
 
