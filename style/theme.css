@@ -21,6 +21,14 @@
     --pui-color-white: #FFFFFF;
     /* 链接颜色 */
     --pui-color-link: #465CFF;
-    
+
+    /* 对应的深色模式 */
+    --pui-color-title-dark: #DCDDDF;
+
+    --pui-bg-page: #F3F4F6;
+    --pui-bg-body: #FFFFFF;
+    --pui-bg-page-dark: #000000;
+    --pui-bg-body-dark: #212224;
+
 }
 

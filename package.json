@@ -13,9 +13,11 @@
     "url": "https://github.com/kyour-cn/petal-ui/issues"
   },
   "homepage": "https://github.com/kyour-cn/petal-ui#readme",
-
   "devDependencies": {
     "vite": "4.0.5",
-    "vue": "^3.2.45"
+    "vue": "^3.3.7"
+  },
+  "dependencies": {
+    "pinia": "^2.1.7"
   }
 }
