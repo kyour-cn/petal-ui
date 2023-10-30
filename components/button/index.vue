@@ -9,6 +9,9 @@
 <script setup>
 
 import {computed, ref, defineProps} from "vue";
+import {usePetalUiStore} from "../../stores/petal-ui";
+
+const puiStore = usePetalUiStore()
 
 const props = defineProps({
     text: {
@@ -81,10 +84,12 @@ const colorObj = computed(() => {
     let color = props.color,
         background = props.background;
     if (color.startsWith('v-'))
-        color = 'var(--pui-color-' + color.substring(2) + ')'
+        color = puiStore.theme[color.substring(2)]
 
     if (background.startsWith('v-'))
-        background = 'var(--pui-color-' + background.substring(2) + ')'
+        background = puiStore.theme[background.substring(2)]
+
+    console.log(puiStore.theme, background)
 
     return {
         color,

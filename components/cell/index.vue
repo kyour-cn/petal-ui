@@ -41,28 +41,27 @@ const props = defineProps({
 
 .pui-cell {
     display: flex;
-
-    .title {
-        padding: 10rpx 0;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        font-size: 30rpx;
-    }
-
-    .label {
-        color: var(--pui-color-label);
-        margin-top: 8rpx;
-        font-size: 24rpx;
-    }
-
-    .value {
-        display: flex;
-        font-size: 30rpx;
-        align-items: center;
-        color: var(--pui-color-subtitle);
-    }
 }
 
+.title {
+    padding: 10rpx 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 30rpx;
+}
+
+.label {
+    color: var(--pui-color-label);
+    margin-top: 8rpx;
+    font-size: 24rpx;
+}
+
+.value {
+    display: flex;
+    font-size: 30rpx;
+    align-items: center;
+    color: var(--pui-color-subtitle);
+}
 </style>

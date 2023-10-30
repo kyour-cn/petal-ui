@@ -1,24 +1,25 @@
-import { defineStore } from 'pinia';
+import {defineStore} from 'pinia';
+
+let isDark = false;
+
+let defaultTheme = {
+	'primary': '#007DFF',
+	'success': '#2ECC71',
+}
 
 export const usePetalUiStore = defineStore('petal_ui', {
-
 	state: () => {
-		let theme = {
-			isDark: false
+		return {
+			dark: isDark,
+			theme: defaultTheme
 
 		}
-
-		// 从缓存中加载上一次的配置
-
-		return theme;
 	},
-	// 也可以这样定义
-	// state: () => ({ count: 0 })
 	actions: {
-		setTheme(value) {
-			for(let i in value) {
-				this.theme[i] = value[i];
-			}
-		},
+		// setTheme(value) {
+		// 	for(let i in value) {
+		// 		this.theme[i] = value[i];
+		// 	}
+		// },
 	},
 });
