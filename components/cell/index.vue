@@ -3,9 +3,22 @@
     <view class="pui-cell">
         <view class="title">
             <text v-text="props.title"/>
-            <text v-if="props.label !== ''" class="label" v-text="props.label"/>
+            <text
+                v-if="props.label !== ''"
+                class="label"
+                :style="{
+                    color: style.labelColor
+                }"
+                v-text="props.label"
+            />
         </view>
-        <view v-if="props.value !== ''" class="value">
+        <view
+            v-if="props.value !== ''"
+            class="value"
+            :style="{
+                color: style.valueColor
+            }"
+        >
             <text v-text="props.value"/>
         </view>
     </view>
@@ -14,11 +27,11 @@
 
 <script setup>
 
-import {defineProps} from "vue";
+import {computed, defineProps} from "vue";
 
-// import {usePetalUiStore} from "../../stores/petal-ui";
-//
-// const puiStore = usePetalUiStore()
+import {usePetalUiStore} from "../../stores/petal-ui";
+
+const puiStore = usePetalUiStore()
 
 const props = defineProps({
     title: {
@@ -32,6 +45,13 @@ const props = defineProps({
     value: {
         type: String,
         default: ''
+    }
+})
+
+const style = computed(() => {
+    return {
+        labelColor: puiStore.theme['label'],
+        valueColor: puiStore.theme['subtitle']
     }
 })
 
@@ -53,7 +73,6 @@ const props = defineProps({
 }
 
 .label {
-    color: var(--pui-color-label);
     margin-top: 8rpx;
     font-size: 24rpx;
 }
@@ -62,6 +81,5 @@ const props = defineProps({
     display: flex;
     font-size: 30rpx;
     align-items: center;
-    color: var(--pui-color-subtitle);
 }
 </style>
