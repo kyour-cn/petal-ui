@@ -8,7 +8,7 @@
 
 <script setup>
 
-import {computed, ref, defineProps} from "vue";
+import {computed, defineProps} from "vue";
 import {usePetalUiStore} from "../../stores/petal-ui";
 
 const puiStore = usePetalUiStore()
@@ -44,15 +44,15 @@ const props = defineProps({
     },
     size: {
         type: String,
-        default: 'v-normal'
+        default: 'normal'
     },
     color: {
         type: String,
-        default: 'v-white'
+        default: ''
     },
     background: {
         type: String,
-        default: 'v-primary'
+        default: 'primary'
     },
     disabled: {
         type: Boolean,
@@ -83,13 +83,14 @@ const sizeObj = computed(() => {
 const colorObj = computed(() => {
     let color = props.color,
         background = props.background;
-    if (color.startsWith('v-'))
-        color = puiStore.theme[color.substring(2)]
 
-    if (background.startsWith('v-'))
-        background = puiStore.theme[background.substring(2)]
+    if(!color){
+        color = 'white'
+    }else if (puiStore.theme[color]){
+        color = puiStore.theme[color]
+    }
 
-    console.log(puiStore.theme, background)
+    background = puiStore.theme[background] || background
 
     return {
         color,
@@ -97,17 +98,19 @@ const colorObj = computed(() => {
     }
 })
 
-const style = ref({
-    color: colorObj.value.color,
-    background: colorObj.value.background,
-    fontSize: sizeObj.value.fontSize,
-    padding: '0 ' + sizeObj.value.padding,
-    borderRadius: sizeObj.value.round,
-    height: sizeObj.value.h,
-    width: sizeObj.value.w,
-    lineHeight: sizeObj.value.h,
-    fontWeight: 700,
-    display: props.block ? 'block' : 'inline-block',
+const style = computed(() => {
+    return {
+        color: colorObj.value.color,
+        background: colorObj.value.background,
+        fontSize: sizeObj.value.fontSize,
+        padding: '0 ' + sizeObj.value.padding,
+        borderRadius: sizeObj.value.round,
+        height: sizeObj.value.h,
+        width: sizeObj.value.w,
+        lineHeight: sizeObj.value.h,
+        fontWeight: 700,
+        display: props.block ? 'block' : 'inline-block',
+    }
 })
 
 </script>
