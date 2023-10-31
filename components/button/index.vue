@@ -80,28 +80,18 @@ const sizeObj = computed(() => {
     }
 })
 
-const colorObj = computed(() => {
-    let color = props.color,
-        background = props.background;
+const style = computed(() => {
 
-    if(!color){
-        color = 'white'
-    }else if (puiStore.theme[color]){
+    let color = props.color || 'white',
+        background = puiStore.theme[props.background] || props.background;
+
+    if (puiStore.theme[color]){
         color = puiStore.theme[color]
     }
 
-    background = puiStore.theme[background] || background
-
     return {
-        color,
-        background
-    }
-})
-
-const style = computed(() => {
-    return {
-        color: colorObj.value.color,
-        background: colorObj.value.background,
+        color: color,
+        background: background,
         fontSize: sizeObj.value.fontSize,
         padding: '0 ' + sizeObj.value.padding,
         borderRadius: sizeObj.value.round,
@@ -115,12 +105,10 @@ const style = computed(() => {
 
 </script>
 
-
 <style scoped>
 
 .petal-btn {
     text-align: center;
 }
-
 
 </style>
