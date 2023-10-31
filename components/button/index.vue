@@ -1,14 +1,21 @@
 <template>
-    <view class="petal-btn" :style="style" @click="emits('click')">
+    <button
+        :class="classList"
+        :style="style"
+        :disabled="props.disabled"
+        @click="onClick"
+        @touchstart="onTouchStart"
+        @touchend="onTouchEnd"
+    >
         <slot name="default">
             <text v-text="props.text"></text>
         </slot>
-    </view>
+    </button>
 </template>
 
 <script setup>
 
-import {computed, defineProps} from "vue";
+import {computed, defineProps, ref} from "vue";
 import {usePetalUiStore} from "../../stores/petal-ui";
 
 const puiStore = usePetalUiStore()
@@ -60,7 +67,23 @@ const props = defineProps({
     }
 })
 
-const emits = defineEmits(["click"]);
+const emits = defineEmits([
+    "click",
+    "touchstart",
+    "touchend"
+]);
+
+const onClick = () => {
+    emits('click')
+}
+const onTouchStart = () => {
+    isHover.value = true
+    emits('touchstart')
+}
+const onTouchEnd = () => {
+    isHover.value = false
+    emits('touchend')
+}
 
 const sizeMap = {
     "mini": {w: 0, h: 40, fontSize: 16, round: 20},
@@ -80,12 +103,28 @@ const sizeObj = computed(() => {
     }
 })
 
+let isHover = ref(false);
+
+const classList = computed(() => {
+    const list = [
+        'petal-btn'
+    ]
+
+    if (isHover.value) {
+        list.push('petal-btn-hover')
+    }
+    if (props.disabled) {
+        list.push('petal-btn-disabled')
+    }
+    return list
+})
+
 const style = computed(() => {
 
     let color = props.color || 'white',
         background = puiStore.theme[props.background] || props.background;
 
-    if (puiStore.theme[color]){
+    if (puiStore.theme[color]) {
         color = puiStore.theme[color]
     }
 
@@ -109,6 +148,15 @@ const style = computed(() => {
 
 .petal-btn {
     text-align: center;
+}
+
+.petal-btn-hover {
+    opacity: 0.7;
+}
+
+.petal-btn-disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
 }
 
 </style>
