@@ -2,6 +2,10 @@ import {defineStore} from 'pinia';
 
 let isDark = false;
 
+const windowInfo = uni.getWindowInfo()
+
+console.log(windowInfo)
+
 let defaultTheme = {
 
 	// 行为相关颜色
@@ -35,6 +39,8 @@ export const usePetalUiStore = defineStore('petal_ui', {
 		return {
 			dark: isDark,
 			// theme: defaultTheme
+
+			safeAreaInsets: windowInfo.safeAreaInsets,
 
 		}
 	},

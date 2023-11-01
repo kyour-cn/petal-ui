@@ -2,12 +2,16 @@
     <view
         v-if="props.placeholder"
         class="petal-navbar-placeholder"
+        :style="{
+            paddingTop: style.paddingTop
+        }"
     />
     <view
         class="petal-navbar"
         :style="{
             background: style.bgColor,
-            zIndex: props.zIndex
+            zIndex: props.zIndex,
+            paddingTop: style.paddingTop
         }"
     >
         <view
@@ -47,7 +51,8 @@ const props = defineProps({
 const style = computed(() => {
     return {
         titleColor: puiStore.theme['title'],
-        bgColor: puiStore.theme['bg-page']
+        bgColor: puiStore.theme['bg-page'],
+        paddingTop: puiStore.safeAreaInsets.top + 'px'
     }
 })
 

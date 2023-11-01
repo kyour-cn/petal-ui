@@ -7,7 +7,8 @@
         class="petal-navbar"
         :style="{
             background: style.bgColor,
-            zIndex: props.zIndex
+            zIndex: props.zIndex,
+            paddingBottom: style.paddingBottom
         }"
     >
         <slot name="default">
@@ -42,7 +43,8 @@ const props = defineProps({
 const style = computed(() => {
     return {
         titleColor: puiStore.theme['title'],
-        bgColor: puiStore.theme['bg-page']
+        bgColor: puiStore.theme['bg-page'],
+        paddingBottom: puiStore.safeAreaInsets.bottom + 'px'
     }
 })
 
