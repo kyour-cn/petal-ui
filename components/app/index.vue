@@ -22,6 +22,6 @@ const style = computed(() => {
 
 <style scoped>
 .pui-app {
-    height: 100%;
+    min-height: 100%;
 }
 </style>
