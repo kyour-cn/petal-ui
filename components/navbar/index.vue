@@ -1,5 +1,4 @@
 <template>
-
     <view
         v-if="props.placeholder"
         class="petal-navbar-placeholder"
@@ -20,7 +19,6 @@
             <text v-text="props.title"/>
         </view>
     </view>
-
 </template>
 
 <script setup>
@@ -63,9 +61,9 @@ const style = computed(() => {
 }
 
 .petal-navbar {
+    height: 80rpx;
     display: flex;
     top: 0;
-    padding: 10rpx 30rpx;
     font-weight: 700;
     width: 100%;
     position: fixed;
@@ -73,9 +71,10 @@ const style = computed(() => {
 }
 
 .title {
-    padding: 10rpx 0;
+    padding-left: 20rpx;
     flex: 1;
     font-size: 30rpx;
+    line-height: 80rpx;
 }
 
 </style>
