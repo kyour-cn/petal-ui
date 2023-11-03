@@ -27,6 +27,10 @@
 
 <script setup>
 
+// TODO: 计划任务如下
+// 1. 新增左侧、右侧图标
+// 2. 新增插槽支持自定义内容
+
 import {computed, defineProps} from "vue";
 
 import {usePetalUiStore} from "../../stores/petal-ui";
