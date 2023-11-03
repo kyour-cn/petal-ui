@@ -1,5 +1,5 @@
 <template>
-    <text :class="'petal-icon-'+props.name"></text>
+    <text :class="props.name"></text>
 </template>
 
 <script setup>
