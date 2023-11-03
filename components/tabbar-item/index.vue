@@ -1,5 +1,5 @@
 <template>
-    <view class="petal-tabbar-item">
+    <view class="petal-tabbar-item" @click="activeIndex = index">
         <pui-icon
             class="icon"
             name="home"
@@ -22,12 +22,28 @@
 
 import PuiIcon from "../icon"
 import {usePetalUiStore} from "../../stores/petal-ui";
-import {computed} from "vue";
+import {computed, defineProps, inject, ref} from "vue";
+
+// const props = defineProps({
+//     key: {
+//         type: Number,
+//         default: 0
+//     },
+// })
+
 const puiStore = usePetalUiStore()
+
+// 使用inject方法获取计算index的函数
+const index = ref(inject('index')());
+const activeIndex = inject('activeIndex', ref(0))
+
+const isActive = computed(() => {
+    return activeIndex.value === index.value
+})
 
 const style = computed(() => {
     return {
-        titleColor: puiStore.theme['title'],
+        titleColor: isActive.value ? puiStore.theme['primary'] : puiStore.theme['title'],
         bgColor: puiStore.theme['bg-body'],
         paddingBottom: puiStore.safeAreaInsets.bottom + 'px'
     }

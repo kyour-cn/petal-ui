@@ -19,7 +19,7 @@
 
 <script setup>
 
-import {computed, defineProps} from "vue";
+import {computed, defineProps, onMounted, provide, ref} from "vue";
 
 import {usePetalUiStore} from "../../stores/petal-ui";
 
@@ -39,6 +39,21 @@ const props = defineProps({
         default: 999
     },
 })
+
+// 给子组件提供一个index
+let indexCount = 1
+provide('index', () => {
+    return indexCount++
+});
+
+onMounted(() => {
+    // 重置index索引
+    indexCount = 1
+})
+
+// 当前活动的item
+let activeIndex = ref(1)
+provide('activeIndex', activeIndex)
 
 const style = computed(() => {
     return {
