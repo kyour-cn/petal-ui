@@ -4,8 +4,6 @@ let isDark = false;
 
 const windowInfo = uni.getWindowInfo()
 
-console.log(windowInfo)
-
 let defaultTheme = {
 
 	// 行为相关颜色
