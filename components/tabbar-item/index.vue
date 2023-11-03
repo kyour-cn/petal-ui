@@ -2,7 +2,7 @@
     <view class="petal-tabbar-item" @click="activeIndex = index">
         <pui-icon
             class="icon"
-            name="home"
+            :name="props.icon"
             :style="{
                 color: style.titleColor
             }"
@@ -12,9 +12,8 @@
             :style="{
                 color: style.titleColor
             }"
-        >
-            首页
-        </text>
+            v-text="name"
+        />
     </view>
 </template>
 
@@ -24,12 +23,16 @@ import PuiIcon from "../icon"
 import {usePetalUiStore} from "../../stores/petal-ui";
 import {computed, defineProps, inject, ref} from "vue";
 
-// const props = defineProps({
-//     key: {
-//         type: Number,
-//         default: 0
-//     },
-// })
+const props = defineProps({
+    icon: {
+        type: String,
+        default: ''
+    },
+    name: {
+        type: String,
+        default: ''
+    },
+})
 
 const puiStore = usePetalUiStore()
 

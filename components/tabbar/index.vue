@@ -20,7 +20,6 @@
 <script setup>
 
 import {computed, defineProps, onMounted, provide, ref} from "vue";
-
 import {usePetalUiStore} from "../../stores/petal-ui";
 
 const puiStore = usePetalUiStore()
