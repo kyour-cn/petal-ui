@@ -2,7 +2,7 @@
     <view class="petal-tabbar-item" @click="activeIndex = index">
         <pui-icon
             class="icon"
-            :name="props.icon"
+            :name="style.icon"
             :style="{
                 color: style.titleColor
             }"
@@ -24,7 +24,13 @@ import {usePetalUiStore} from "../../stores/petal-ui";
 import {computed, defineProps, inject, ref} from "vue";
 
 const props = defineProps({
+    // 默认图标
     icon: {
+        type: String,
+        default: ''
+    },
+    // 激活时图标，为空时使用默认图标
+    activeIcon: {
         type: String,
         default: ''
     },
@@ -45,10 +51,15 @@ const isActive = computed(() => {
 })
 
 const style = computed(() => {
+
+    // 激活图标为空时使用默认图标
+    let activeIcon = props.activeIcon ? props.activeIcon : props.icon
+
     return {
         titleColor: isActive.value ? puiStore.theme['primary'] : puiStore.theme['title'],
         bgColor: puiStore.theme['bg-body'],
-        paddingBottom: puiStore.safeAreaInsets.bottom + 'px'
+        paddingBottom: puiStore.safeAreaInsets.bottom + 'px',
+        icon: isActive.value ? activeIcon : props.icon
     }
 })
 
