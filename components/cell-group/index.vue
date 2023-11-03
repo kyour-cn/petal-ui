@@ -30,14 +30,13 @@ const style = computed(() => {
 <style scoped>
 
 .pui-cell-group {
-    padding: 20rpx;
+    padding: 10rpx 20rpx;
     margin: 20rpx;
     border-radius: 30rpx;
 }
 
 .pui-cell-group :deep(.pui-cell:not(:last-child)) {
     border-bottom: 1px solid #CECECE;
-    padding: 20rpx 0;
 }
 
 .pui-cell-group-dark :deep(.pui-cell:not(:last-child)) {

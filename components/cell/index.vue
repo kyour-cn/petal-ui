@@ -64,12 +64,12 @@ const style = computed(() => {
 }
 
 .title {
-    padding: 10rpx 0;
+    padding: 20rpx 0;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 30rpx;
+    font-size: 28rpx;
 }
 
 .label {
@@ -79,7 +79,7 @@ const style = computed(() => {
 
 .value {
     display: flex;
-    font-size: 30rpx;
+    font-size: 28rpx;
     align-items: center;
 }
 </style>
