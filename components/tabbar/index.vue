@@ -81,8 +81,4 @@ const style = computed(() => {
     z-index: 999;
 }
 
-/* 微信小程序会多一层组件容器，导致样式异常 */
-.petal-tabbar :deep(pui-tabbar-item) {
-    flex: 1;
-}
 </style>

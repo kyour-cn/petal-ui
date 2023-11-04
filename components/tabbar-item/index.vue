@@ -65,6 +65,15 @@ const style = computed(() => {
 
 </script>
 
+<script>
+// 小程序去除自定义组件节点
+export default {
+    options: {
+        virtualHost: true
+    }
+}
+</script>
+
 <style scoped>
 
 .petal-tabbar-item {
