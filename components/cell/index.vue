@@ -32,7 +32,7 @@
 // 2. 增加icon属性，用于显示左侧icon
 // 3. 所有内容支持插槽，用于自定义内容
 
-import {computed, defineProps} from "vue";
+import {computed} from "vue";
 import {usePetalUiStore} from "../../stores/petal-ui";
 
 const puiStore = usePetalUiStore()

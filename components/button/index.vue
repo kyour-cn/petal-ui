@@ -18,7 +18,7 @@
 // TODO: 计划任务如下
 // 1. 更多按钮样式支持
 
-import {computed, defineProps, ref} from "vue";
+import {computed, ref} from "vue";
 import {usePetalUiStore} from "../../stores/petal-ui";
 
 const puiStore = usePetalUiStore()
