@@ -1,10 +1,10 @@
 <template>
     <view
         v-if="props.placeholder"
-        class="petal-navbar-placeholder"
+        class="petal-tabbar-placeholder"
     />
     <view
-        class="petal-navbar"
+        class="petal-tabbar"
         :style="{
             background: style.bgColor,
             zIndex: props.zIndex,
@@ -57,7 +57,7 @@ provide('activeIndex', activeIndex)
 const style = computed(() => {
     return {
         titleColor: puiStore.theme['title'],
-        bgColor: puiStore.theme['bg-body'],
+        bgColor: puiStore.theme['bg-tabbar'],
         paddingBottom: puiStore.safeAreaInsets.bottom + 'px'
     }
 })
@@ -66,12 +66,12 @@ const style = computed(() => {
 
 <style scoped>
 
-.petal-navbar-placeholder {
+.petal-tabbar-placeholder {
     height: 80rpx;
     width: 100%;
 }
 
-.petal-navbar {
+.petal-tabbar {
     height: 80rpx;
     display: flex;
     bottom: 0;
@@ -81,4 +81,8 @@ const style = computed(() => {
     z-index: 999;
 }
 
+/* 微信小程序会多一层组件容器，导致样式异常 */
+.petal-tabbar :deep(pui-tabbar-item) {
+    flex: 1;
+}
 </style>
