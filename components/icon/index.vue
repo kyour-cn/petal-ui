@@ -1,5 +1,10 @@
 <template>
-    <text :class="props.name"></text>
+    <text
+        :class="props.name"
+        :style="{
+            fontSize: props.size + 'rpx'
+        }"
+    />
 </template>
 
 <script setup>
@@ -13,6 +18,10 @@ const props = defineProps({
         type: String,
         default: ''
     },
+    size: {
+        type: Number,
+        default: 32
+    }
 })
 
 </script>
