@@ -2,6 +2,7 @@
 
     <view
         :class="{'pui-cell': true, 'clickable': props.isLink}"
+        @click="onClick"
     >
         <view class="title">
             <text v-text="props.title"/>
@@ -31,7 +32,7 @@
 <script setup>
 
 // TODO: 计划任务如下
-// 1. isLink属性，用于是否显示右侧箭头
+// 1. ✅ isLink属性，用于是否显示右侧箭头
 // 2. 增加icon属性，用于显示左侧icon
 // 3. 所有内容支持插槽，用于自定义内容
 
@@ -59,6 +60,14 @@ const props = defineProps({
         default: false
     },
 })
+
+const emits = defineEmits([
+    "click"
+]);
+
+const onClick = () => {
+    emits('click')
+}
 
 const style = computed(() => {
 
