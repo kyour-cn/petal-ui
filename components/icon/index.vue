@@ -4,6 +4,7 @@
         :style="{
             fontSize: props.size + 'rpx'
         }"
+        @click="onClick"
     />
 </template>
 
@@ -23,5 +24,13 @@ const props = defineProps({
         default: 32
     }
 })
+
+const emits = defineEmits([
+    "click"
+]);
+
+const onClick = () => {
+    emits('click')
+}
 
 </script>
