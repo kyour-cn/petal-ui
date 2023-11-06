@@ -1,6 +1,8 @@
 <template>
 
-    <view class="pui-cell">
+    <view
+        :class="{'pui-cell': true, 'clickable': props.isLink}"
+    >
         <view class="title">
             <text v-text="props.title"/>
             <text
@@ -21,6 +23,7 @@
         >
             <text v-text="props.value"/>
         </view>
+        <PuiIcon v-if="style.rightIcon" class="right-icon" :name="style.rightIcon"/>
     </view>
 
 </template>
@@ -34,6 +37,7 @@
 
 import {computed} from "vue";
 import {usePetalUiStore} from "../../stores/petal-ui";
+import PuiIcon from "../icon"
 
 const puiStore = usePetalUiStore()
 
@@ -49,22 +53,45 @@ const props = defineProps({
     value: {
         type: String,
         default: ''
-    }
+    },
+    isLink: {
+        type: Boolean,
+        default: false
+    },
 })
 
 const style = computed(() => {
+
+    let rightIcon = ''
+    if (props.isLink) {
+        rightIcon = 'petal-icon-arrow-right'
+    }
+
     return {
         labelColor: puiStore.theme['label'],
-        valueColor: puiStore.theme['subtitle']
+        valueColor: puiStore.theme['subtitle'],
+        rightIcon
     }
 })
 
+</script>
+
+<script>
+// 小程序去除自定义组件节点
+export default {
+    options: {
+        virtualHost: true
+    }
+}
 </script>
 
 <style scoped>
 
 .pui-cell {
     display: flex;
+    padding: 0 20rpx;
+
+    align-items: center;
 }
 
 .title {
@@ -86,4 +113,11 @@ const style = computed(() => {
     font-size: 28rpx;
     align-items: center;
 }
+
+.clickable:active {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 20rpx;
+    opacity: 0.7;
+}
+
 </style>

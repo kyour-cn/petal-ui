@@ -30,17 +30,43 @@ const style = computed(() => {
 <style scoped>
 
 .pui-cell-group {
-    padding: 10rpx 20rpx;
+    padding: 10rpx 0;
     margin: 20rpx;
     border-radius: 30rpx;
 }
 
 .pui-cell-group :deep(.pui-cell:not(:last-child)) {
-    border-bottom: 1px solid #CECECE;
+    position: relative;
+/*    border-bottom: 1px solid #CECECE;
+
+    border-bottom-left-radius: 10rpx;
+    border-bottom-right-radius: 10rpx;*/
 }
 
-.pui-cell-group-dark :deep(.pui-cell:not(:last-child)) {
+.pui-cell-group :deep(.pui-cell:not(:last-child):after) {
+    position: absolute;
+    box-sizing: border-box;
+    content: " ";
+    pointer-events: none;
+    right: 20rpx;
+    bottom: 0;
+    left: 20rpx;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.pui-cell-group-dark :deep(.pui-cell:not(:last-child):after) {
+    position: absolute;
+    box-sizing: border-box;
+    content: " ";
+    pointer-events: none;
+    right: 20rpx;
+    bottom: 0;
+    left: 20rpx;
     border-bottom: 1px solid #4C4D4F;
 }
+/*
+.pui-cell-group-dark :deep(.pui-cell:not(:last-child)) {
+    border-bottom: 1px solid #4C4D4F;
+}*/
 
 </style>
