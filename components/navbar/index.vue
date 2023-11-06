@@ -14,6 +14,13 @@
             paddingTop: style.paddingTop
         }"
     >
+        <PuiIcon
+            v-if="style.leftIcon"
+            class="left-icon"
+            :name="style.leftIcon"
+            :size="40"
+            @click="clickLeft"
+        />
         <view
             class="title"
             :style="{
@@ -34,6 +41,7 @@
 import {computed} from "vue";
 
 import {usePetalUiStore} from "../../stores/petal-ui";
+import PuiIcon from "../icon/index.vue";
 
 const puiStore = usePetalUiStore()
 
@@ -50,13 +58,32 @@ const props = defineProps({
         type: Number,
         default: 999
     },
+    leftArrow: {
+        type: Boolean,
+        default: false
+    }
 })
 
+const emits = defineEmits([
+    "click-left"
+]);
+
+const clickLeft = () => {
+    emits('click-left')
+}
+
 const style = computed(() => {
+
+    let leftIcon = ''
+    if (props.leftArrow) {
+        leftIcon = 'petal-icon-back'
+    }
+
     return {
         titleColor: puiStore.theme['title'],
         bgColor: puiStore.theme['bg-page'],
-        paddingTop: puiStore.safeAreaInsets.top + 'px'
+        paddingTop: puiStore.safeAreaInsets.top + 'px',
+        leftIcon
     }
 })
 
@@ -77,6 +104,17 @@ const style = computed(() => {
     width: 100%;
     position: fixed;
     z-index: 999;
+    align-items: center;
+}
+
+.left-icon {
+    margin-left: 20rpx;
+}
+
+.left-icon:active {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 20rpx;
+    opacity: 0.7;
 }
 
 .title {
