@@ -19,6 +19,7 @@
             class="left-icon"
             :name="style.leftIcon"
             :size="40"
+            :color="style.titleColor"
             @click="clickLeft"
         />
         <view
@@ -29,6 +30,15 @@
         >
             <text v-text="props.title"/>
         </view>
+
+        <PuiIcon
+            v-if="props.rightIcon"
+            class="right-icon"
+            :name="props.rightIcon"
+            :size="40"
+            :color="style.titleColor"
+            @click="clickRight"
+        />
     </view>
 </template>
 
@@ -48,7 +58,7 @@ const puiStore = usePetalUiStore()
 const props = defineProps({
     title: {
         type: String,
-        default: 'Title'
+        default: ''
     },
     placeholder: {
         type: Boolean,
@@ -61,15 +71,24 @@ const props = defineProps({
     leftArrow: {
         type: Boolean,
         default: false
+    },
+    rightIcon: {
+        type: String,
+        default: 'Title'
     }
 })
 
 const emits = defineEmits([
-    "click-left"
+    "click-left",
+    "click-right"
 ]);
 
 const clickLeft = () => {
     emits('click-left')
+}
+
+const clickRight = () => {
+    emits('click-right')
 }
 
 const style = computed(() => {
@@ -92,12 +111,12 @@ const style = computed(() => {
 <style scoped>
 
 .petal-navbar-placeholder {
-    height: 80rpx;
+    height: 88rpx;
     width: 100%;
 }
 
 .petal-navbar {
-    height: 80rpx;
+    height: 88rpx;
     display: flex;
     top: 0;
     font-weight: 700;
@@ -110,6 +129,10 @@ const style = computed(() => {
 .left-icon {
     margin-left: 20rpx;
 }
+.right-icon {
+    margin-left: auto;
+    margin-right: 20rpx;
+}
 
 .left-icon:active {
     background: rgba(0, 0, 0, 0.1);
@@ -121,7 +144,7 @@ const style = computed(() => {
     padding-left: 20rpx;
     flex: 1;
     font-size: 30rpx;
-    line-height: 80rpx;
+    line-height: 88rpx;
 }
 
 </style>
