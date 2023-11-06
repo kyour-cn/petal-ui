@@ -24,7 +24,12 @@
         >
             <text v-text="props.value"/>
         </view>
-        <PuiIcon v-if="style.rightIcon" class="right-icon" :name="style.rightIcon"/>
+        <PuiIcon
+            v-if="style.rightIcon"
+            class="right-icon"
+            :name="style.rightIcon"
+            :color="style.valueColor"
+        />
     </view>
 
 </template>
@@ -119,7 +124,7 @@ export default {
 
 .value {
     display: flex;
-    font-size: 28rpx;
+    font-size: 22rpx;
     align-items: center;
 }
 
