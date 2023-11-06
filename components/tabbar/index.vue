@@ -67,17 +67,18 @@ const style = computed(() => {
 <style scoped>
 
 .petal-tabbar-placeholder {
-    height: 80rpx;
+    height: 120rpx;
     width: 100%;
 }
 
 .petal-tabbar {
-    height: 80rpx;
-    display: flex;
-    bottom: 0;
-    font-weight: 700;
     width: 100%;
+    height: 120rpx;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
     position: fixed;
+    bottom: 0;
     z-index: 999;
 }
 

@@ -3,12 +3,11 @@
         <pui-icon
             class="icon"
             :name="style.icon"
-            :style="{
-                color: style.titleColor
-            }"
+            :size="40"
+            :color="style.titleColor"
         />
         <text
-            class="title"
+            class="name"
             :style="{
                 color: style.titleColor
             }"
@@ -81,6 +80,7 @@ export default {
     align-items: center;
     flex: 1;
     flex-direction: column;
+    padding: 20rpx 0;
 }
 
 /* 按下样式 */
@@ -91,11 +91,11 @@ export default {
 }
 
 .icon {
-    padding-top: 10rpx;
+    padding-bottom: 5rpx;
 }
 
-.title {
-    font-size: 20rpx;
+.name {
+    font-size: 22rpx;
 }
 
 </style>
