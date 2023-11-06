@@ -2,7 +2,8 @@
     <text
         :class="props.name"
         :style="{
-            fontSize: props.size + 'rpx'
+            fontSize: props.size + 'rpx',
+            color: props.color
         }"
         @click="onClick"
     />
@@ -22,6 +23,10 @@ const props = defineProps({
     size: {
         type: Number,
         default: 32
+    },
+    color: {
+        type: String,
+        default: ''
     }
 })
 
