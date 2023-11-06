@@ -27,6 +27,15 @@ const style = computed(() => {
 
 </script>
 
+<script>
+// 小程序去除自定义组件节点
+export default {
+    options: {
+        virtualHost: true,
+        styleIsolation: 'shared'
+    }
+}
+</script>
 <style scoped>
 
 .pui-cell-group {
@@ -37,13 +46,9 @@ const style = computed(() => {
 
 .pui-cell-group :deep(.pui-cell:not(:last-child)) {
     position: relative;
-/*    border-bottom: 1px solid #CECECE;
-
-    border-bottom-left-radius: 10rpx;
-    border-bottom-right-radius: 10rpx;*/
 }
 
-.pui-cell-group :deep(.pui-cell:not(:last-child):after) {
+.pui-cell-group :deep(.pui-cell:not(:last-child)::after) {
     position: absolute;
     box-sizing: border-box;
     content: " ";
@@ -54,7 +59,7 @@ const style = computed(() => {
     border-bottom: 1px solid #E8E8E8;
 }
 
-.pui-cell-group-dark :deep(.pui-cell:not(:last-child):after) {
+.pui-cell-group-dark :deep(.pui-cell:not(:last-child)::after) {
     position: absolute;
     box-sizing: border-box;
     content: " ";
@@ -64,9 +69,5 @@ const style = computed(() => {
     left: 20rpx;
     border-bottom: 1px solid #4C4D4F;
 }
-/*
-.pui-cell-group-dark :deep(.pui-cell:not(:last-child)) {
-    border-bottom: 1px solid #4C4D4F;
-}*/
 
 </style>
