@@ -109,12 +109,12 @@ export default {
 }
 
 .title {
-    padding: 20rpx 0;
+    padding: 30rpx 0;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 28rpx;
+    font-size: 32rpx;
 }
 
 .label {
@@ -124,7 +124,7 @@ export default {
 
 .value {
     display: flex;
-    font-size: 22rpx;
+    font-size: 28rpx;
     align-items: center;
 }
 
