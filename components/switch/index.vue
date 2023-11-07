@@ -2,6 +2,9 @@
     <view
         class="petal-switch"
         :class="{'switch-on': value}"
+        :style="{
+            backgroundColor: style.backgroundColor
+        }"
         @click="toggle"
     >
         <view class="switch-circle"/>
@@ -10,6 +13,9 @@
 
 <script setup>
 import {computed} from 'vue';
+import {usePetalUiStore} from "../../stores/petal-ui";
+
+const puiStore = usePetalUiStore()
 
 const props = defineProps({
     modelValue: Boolean
@@ -27,20 +33,22 @@ const value = computed({
 const toggle = () => {
     value.value = !value.value;
 }
+
+const style = computed(() => {
+    return {
+        backgroundColor: puiStore.theme[value.value ? 'primary' : 'bg-light']
+    }
+})
+
 </script>
 
 <style scoped>
 .petal-switch {
     width: 100rpx;
     height: 50rpx;
-    background-color: #CCC;
     border-radius: 50rpx;
     position: relative;
     cursor: pointer;
-}
-
-.switch-on {
-    background-color: #254FF7;
 }
 
 .switch-circle {
