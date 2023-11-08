@@ -1,37 +1,42 @@
 <template>
-<view class="petal-slider">
-    <view class="petal-slider-inner">
-        <view class="petal-slider-bar" :style="{width: `${value.value}%`}">
-            <view class="petal-slider-bar-inner"></view>
-            <view class="petal-slider-bar-outer"></view>
-        </view>
-        <view
-            class="petal-slider-handle"
-            :style="{left: `${value.value}%`}"
-            @touchstart="touchStart"
-            @touchmove.native="touchMove"
-            @touchend="touchEnd"
-        >
-            <view class="petal-slider-handle-inner"></view>
+    <view class="petal-slider">
+        <view class="petal-slider-inner">
+            <view class="petal-slider-bar" :style="{width: `${positionX}px`}"/>
+            <view
+                class="petal-slider-handle"
+                :style="{left: (positionX - 10) + 'px'}"
+                @touchmove.native="touchMove"
+                @touchend="touchEnd"
+            />
         </view>
     </view>
-</view>
-
 </template>
 
 <script setup>
-import {computed} from 'vue';
 
-// TODO: 小程序无法自定义样式
+// TODO: 计划任务如下
+// 1. 动态主题色支持
+// 2. 增加icon属性
+// 3. 步长支持
+
+import {computed, getCurrentInstance, nextTick, ref} from 'vue';
 
 const props = defineProps({
     modelValue: {
         type: Number,
-        default: 1
+        default: 0
     },
     step: {
         type: Number,
         default: 1
+    },
+    min: {
+        type: Number,
+        default: 0
+    },
+    max: {
+        type: Number,
+        default: 100
     }
 })
 
@@ -41,64 +46,93 @@ const emits = defineEmits([
     'change'
 ])
 
+const instance = getCurrentInstance()
+
+const allWidth = ref(0)
+
+nextTick(() => {
+    let view = uni.createSelectorQuery().in(instance)
+        .select(".petal-slider-inner");
+    view.fields({
+        size: true,
+        scrollOffset: true
+    }, data => {
+        allWidth.value = data.width
+
+        let newValue = value.value
+
+        // 初始化位置
+        if(value.value < props.min) {
+            newValue = props.min
+        }else if(value.value > props.max) {
+            newValue = props.max
+        }
+
+        // 计算位置
+        if (newValue > 0) {
+            let x = newValue * (allWidth.value / props.max)
+            if (positionX.value < x) {
+                positionX.value = x
+            }
+        }
+        value.value = newValue
+    }).exec();
+})
+
 const value = computed({
     get: () => props.modelValue,
     set: (value) => emits('update:modelValue', value)
 })
 
-const touchStart = (e) => {
-    console.log(e)
-}
+// x轴位置
+const positionX = ref(0)
+
 const touchMove = (e) => {
+    let x = e.touches[0].clientX
+    x = x > allWidth.value? allWidth.value : x
+    x = x > 0 ? x : 0
 
-    console.log('横向移动距离：' + e.deltaX);
+    // 计算min
+    if (props.min > 0) {
+        let min = props.min * (allWidth.value / props.max)
+        if (x < min) {
+            x = min
+        }
+    }
+    positionX.value = x
+    value.value = Math.round(positionX.value * (props.max / allWidth.value))
 
+    emits("changing", value.value)
 }
+
 const touchEnd = () => {
+    emits("change", value.value)
 }
-
-
-const sliderChangeing = (e) => {
-    console.log(e)
-    // value.value = e.detail.value;
-    // emits('changing', e.detail.value)
-};
-
-const sliderChange = (e) => {
-    console.log(e)
-    // value.value = e.detail.value;
-    // emits('change', e.detail.value)
-};
 
 </script>
 
 <style scoped>
 .petal-slider {
     height: 20rpx;
-    margin: 10rpx;
+    margin: 20rpx;
     background: #ccc;
     position: relative;
     border-radius: 10rpx;
 }
+
 .petal-slider-inner {
     height: 100%;
     width: 100%;
     position: relative;
 }
+
 .petal-slider-bar {
     height: 100%;
-    background: #007aff;
+    background: #2550F7;
     position: absolute;
-    border-radius: 10rpx;
+    border-radius: 10rpx 0 0 10rpx;
 }
-.petal-slider-bar-inner {
-    height: 100%;
-    background: #fff;
-}
-.petal-slider-bar-outer {
-    height: 100%;
-    background: #007aff;
-}
+
 .petal-slider-handle {
     width: 40rpx;
     height: 40rpx;
