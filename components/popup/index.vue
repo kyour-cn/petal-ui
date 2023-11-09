@@ -1,14 +1,17 @@
 <template>
     <view
         class="petal-popup-mask"
-        v-if="value"
+        v-show="offset !== -props.height"
         :style="{
-            zIndex: props.zIndex
+            zIndex: props.zIndex,
+            background: 'rgba(0, 0, 0,'+((1 - (Math.abs(offset)/height)) * 0.5)+')'
         }"
+        @click="value = false"
     >
         <view
             class="petal-popup"
             :style="position"
+            @click.stop=""
         >
             <view class="petal-popup-body">
                 <slot name="default">
@@ -21,7 +24,7 @@
 
 <script setup>
 
-import {computed, nextTick, ref} from "vue";
+import {computed, ref, watch} from "vue";
 
 const props = defineProps({
     modelValue: {
@@ -39,7 +42,8 @@ const props = defineProps({
 })
 
 const emits = defineEmits([
-    'update:modelValue'
+    'update:modelValue',
+    'change'
 ])
 
 const value = computed({
@@ -47,23 +51,26 @@ const value = computed({
     set: (value) => emits('update:modelValue', value)
 })
 
+watch(value, () => {
+    move()
+    emits('change', value.value)
+})
+
 // 动画位移
-let offset = ref(-props.height)
+let offset = ref(value.value? 0 : -props.height)
 
 const move = () => {
     setTimeout(() => {
-        offset.value += 20
-        if (offset.value >= 0) {
+        offset.value = value.value ? offset.value + 10 : offset.value - 10
+        if (value.value && offset.value >= 0) {
             offset.value = 0
+        }else if(!value.value && offset.value <= -props.height) {
+            offset.value = -props.height
         }else{
             move()
         }
-    }, 10)
+    }, 5)
 }
-
-nextTick(() => {
-    move()
-})
 
 // 位置
 const position = computed(() => {
@@ -82,7 +89,6 @@ const position = computed(() => {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
 }
 
 .petal-popup {
