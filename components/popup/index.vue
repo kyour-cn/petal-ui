@@ -1,21 +1,21 @@
 <template>
     <view
-        class="petal-popup-mask"
+        class="petal-popup-overlay"
         v-show="offset !== -props.height"
         :style="{
             zIndex: props.zIndex,
             background: 'rgba(0, 0, 0,'+((1 - (Math.abs(offset)/height)) * 0.5)+')'
         }"
-        @click="value = false"
+        @click="onClickOverlay"
     >
         <view
             class="petal-popup"
-            :style="position"
+            :style="style"
             @click.stop=""
         >
             <view class="petal-popup-body">
                 <slot name="default">
-                    {{position}}
+                    {{style}}
                 </slot>
             </view>
         </view>
@@ -25,15 +25,25 @@
 <script setup>
 
 import {computed, ref, watch} from "vue";
+import {usePetalUiStore} from "../../stores/petal-ui";
+
+const puiStore = usePetalUiStore()
 
 const props = defineProps({
+    // 弹窗是否显示
     modelValue: {
         type: Boolean,
         default: 0
     },
+    // 弹窗高度
     height: {
         type: Number,
         default: 500
+    },
+    // 点击遮罩层是否关闭弹窗
+    closeOnClickOverlay: {
+        type: Boolean,
+        default: true
     },
     zIndex: {
         type: Number,
@@ -43,7 +53,10 @@ const props = defineProps({
 
 const emits = defineEmits([
     'update:modelValue',
-    'change'
+    // 打开关闭状态变化
+    'change',
+    // 点击遮罩层
+    'clickOverlay'
 ])
 
 const value = computed({
@@ -72,18 +85,26 @@ const move = () => {
     }, 5)
 }
 
+const onClickOverlay = () => {
+    if (props.closeOnClickOverlay) {
+        value.value = false
+    }
+    emits('clickOverlay')
+}
+
 // 位置
-const position = computed(() => {
+const style = computed(() => {
     return {
         height: props.height + 'rpx',
-        bottom: offset.value + 'rpx'
+        bottom: offset.value + 'rpx',
+        background: puiStore.theme['bg-popup']
     }
 })
 
 </script>
 
 <style scoped>
-.petal-popup-mask {
+.petal-popup-overlay {
     position: fixed;
     left: 0;
     top: 0;
@@ -95,7 +116,6 @@ const position = computed(() => {
     border-radius:  40rpx 40rpx 0 0;
     position: fixed;
     width: 100%;
-    background: #FFFFFF;
 }
 .petal-popup-body {
     padding: 20rpx;
