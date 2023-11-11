@@ -1,11 +1,8 @@
 <template>
     <view
         class="petal-popup-overlay"
-        v-show="offset !== -props.height"
-        :style="{
-            zIndex: props.zIndex,
-            background: 'rgba(0, 0, 0,'+((1 - (Math.abs(offset)/height)) * 0.5)+')'
-        }"
+        v-if="offset !== -props.height"
+        :style="overlayStyle"
         @click="onClickOverlay"
     >
         <view
@@ -24,7 +21,7 @@
 
 import {computed, ref, watch} from "vue";
 import {usePetalUiStore} from "../../stores/petal-ui";
-import {normalizePadding2} from "../../lib/utils.js"
+import {normalizePadding, px2Rpx} from "../../lib/utils.js"
 
 const puiStore = usePetalUiStore()
 
@@ -119,11 +116,7 @@ const style = computed(() => {
     }
 
     // 边距
-    let padding = props.padding
-    if (!Array.isArray(props.padding)) {
-        padding = [padding]
-    }
-    padding = normalizePadding2(padding)
+    let padding = normalizePadding(props.padding)
 
     // 宽度
     if (props.width > 0) {
@@ -132,17 +125,27 @@ const style = computed(() => {
         obj.width = 'calc(100% - ' + (padding[1] + padding[3]) + 'rpx)'
     }
 
+    // 适配安全区域
+    // if (puiStore?.safeAreaInsets) {
+    //     obj.paddingTop = px2Rpx(puiStore.safeAreaInsets.top, puiStore.screenWidth) + padding[0] + 'rpx'
+    //     obj.paddingBottom = px2Rpx(puiStore.safeAreaInsets.bottom, puiStore.screenWidth) + padding[2] + 'rpx'
+    // }
+
     // 适配不同位置的样式
     switch (props.position) {
         case 'top':
             obj.top = offset.value + 'rpx'
             obj.borderRadius = '0 0 40rpx 40rpx'
             padding[0] = 0
+            // 适配安全区域
+            obj.paddingTop = px2Rpx(puiStore.safeAreaInsets.top, puiStore.screenWidth) + padding[0] + 'rpx'
             break;
         case 'bottom':
             obj.bottom = offset.value + 'rpx'
             obj.borderRadius = '40rpx 40rpx 0 0'
             padding[2] = 0
+            // 适配安全区域
+            obj.paddingBottom = px2Rpx(puiStore.safeAreaInsets.bottom, puiStore.screenWidth) + padding[2] + 'rpx'
             break;
         case 'center':
         default:
@@ -152,6 +155,17 @@ const style = computed(() => {
     }
     obj.margin = padding.join('rpx ') + 'rpx'
     return obj
+})
+
+const overlayStyle = computed(() => {
+
+    const ratio = Math.abs(offset.value) / props.height
+    const opacity = (1 - ratio) * (puiStore.dark ? 0.7 : 0.5)
+
+    return {
+        zIndex: props.zIndex,
+        background: 'rgba(0, 0, 0,' + opacity + ')'
+    }
 })
 
 </script>
@@ -169,6 +183,7 @@ const style = computed(() => {
 .petal-popup {
     position: fixed;
     width: 100%;
+    overflow-y: scroll;
 }
 
 .petal-popup-body {
