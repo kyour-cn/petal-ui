@@ -4,14 +4,23 @@ import {defaultTheme, darkTheme} from '../lib/theme'
 
 let isDark = false;
 
-const windowInfo = uni.getWindowInfo()
+let windowInfo = null,
+	systemInfo = null;
 
 export const usePetalUiStore = defineStore('petal_ui', {
 	state: () => {
+		if (windowInfo === null) {
+			windowInfo = uni.getWindowInfo()
+			systemInfo = uni.getSystemInfoSync()
+		}
 		return {
 			dark: isDark,
-			// theme: defaultTheme
 
+			windowInfo,
+			systemInfo,
+
+			screenWidth: windowInfo.screenWidth,
+			screenHeight: windowInfo.screenHeight,
 			safeAreaInsets: windowInfo.safeAreaInsets,
 
 		}
