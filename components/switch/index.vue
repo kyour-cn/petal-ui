@@ -1,7 +1,10 @@
 <template>
     <view
-        class="petal-switch"
-        :class="{'switch-on': value}"
+        :class="{
+            'petal-switch': true,
+            'petal-disabled': props.disabled,
+            'switch-on': value
+        }"
         :style="{
             backgroundColor: style.backgroundColor
         }"
@@ -18,7 +21,11 @@ import {usePetalUiStore} from "../../stores/petal-ui";
 const puiStore = usePetalUiStore()
 
 const props = defineProps({
-    modelValue: Boolean
+    modelValue: Boolean,
+    disabled: {
+        type: Boolean,
+        default: false
+    }
 })
 
 const emits = defineEmits([
@@ -31,6 +38,9 @@ const value = computed({
 })
 
 const toggle = () => {
+    if (props.disabled) {
+        return
+    }
     value.value = !value.value;
 }
 
@@ -51,14 +61,19 @@ const style = computed(() => {
     cursor: pointer;
 }
 
+.petal-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .switch-circle {
     width: 42rpx;
     height: 42rpx;
     background-color: #FFFFFF;
     border-radius: 50%;
     position: absolute;
-    top: 4rpx;
-    left: 4rpx;
+    top: calc(50% - 21rpx);
+    left: 5rpx;
     transition: all 0.3s ease;
 }
 
