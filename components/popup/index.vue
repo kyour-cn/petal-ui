@@ -53,7 +53,7 @@ const props = defineProps({
     },
     padding: {
         type: [Number, Array],
-        default: 20
+        default: 0
     },
     zIndex: {
         type: Number,
@@ -88,12 +88,32 @@ const move = () => {
         offset.value = value.value ? offset.value + 10 : offset.value - 10
         if (value.value && offset.value >= 0) {
             offset.value = 0
+            elasticAnimation()
         } else if (!value.value && offset.value <= -props.height) {
             offset.value = -props.height
         } else {
             move()
         }
     }, 5)
+}
+
+// 弹性动画
+let elasticDirection = true
+let elasticHeight = ref(0)
+const elasticAnimation = () => {
+    if (!elasticDirection && elasticHeight.value === 0) {
+        elasticDirection = true
+        return
+    }
+
+    if (elasticDirection && elasticHeight.value < 20) {
+        elasticHeight.value += 5
+    } else if (!elasticDirection && elasticHeight.value > 0) {
+        elasticHeight.value -= 5
+    } else {
+        elasticDirection = !elasticDirection
+    }
+    setTimeout(elasticAnimation, 10)
 }
 
 // 点击遮罩层
@@ -106,7 +126,7 @@ const onClickOverlay = () => {
 
 const style = computed(() => {
     const obj = {
-        height: props.height + 'rpx',
+        height: props.height + elasticHeight.value + 'rpx',
         background: puiStore.theme['bg-popup']
     }
 
@@ -116,7 +136,7 @@ const style = computed(() => {
     }
 
     // 边距
-    let padding = normalizePadding(props.padding)
+    let padding = normalizePadding2(Array.isArray(props.padding) ? props.padding : [props.padding])
 
     // 宽度
     if (props.width > 0) {
@@ -124,12 +144,6 @@ const style = computed(() => {
     } else {
         obj.width = 'calc(100% - ' + (padding[1] + padding[3]) + 'rpx)'
     }
-
-    // 适配安全区域
-    // if (puiStore?.safeAreaInsets) {
-    //     obj.paddingTop = px2Rpx(puiStore.safeAreaInsets.top, puiStore.screenWidth) + padding[0] + 'rpx'
-    //     obj.paddingBottom = px2Rpx(puiStore.safeAreaInsets.bottom, puiStore.screenWidth) + padding[2] + 'rpx'
-    // }
 
     // 适配不同位置的样式
     switch (props.position) {
