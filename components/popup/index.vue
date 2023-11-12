@@ -10,7 +10,7 @@
             :style="style"
             @click.stop=""
         >
-            <view class="petal-popup-body">
+            <view class="popup-body">
                 <slot name="default"/>
             </view>
         </view>
@@ -30,6 +30,11 @@ const props = defineProps({
     modelValue: {
         type: Boolean,
         default: 0
+    },
+    // 弹出层标题
+    title: {
+        type: String,
+        default: ''
     },
     // 弹出层高度
     height: {
@@ -84,17 +89,17 @@ let offset = ref(value.value ? 0 : -props.height)
 
 // 移入移出位移动画
 const move = () => {
-    setTimeout(() => {
-        offset.value = value.value ? offset.value + 10 : offset.value - 10
-        if (value.value && offset.value >= 0) {
-            offset.value = 0
-            elasticAnimation()
-        } else if (!value.value && offset.value <= -props.height) {
-            offset.value = -props.height
-        } else {
-            move()
-        }
-    }, 5)
+    offset.value = value.value ? offset.value + 10 : offset.value - 10
+    if (value.value && offset.value >= 0) {
+        offset.value = 0
+
+        // 弹性动画
+        if(props.position !== 'center') elasticAnimation()
+    } else if (!value.value && offset.value <= -props.height) {
+        offset.value = -props.height
+    } else {
+        setTimeout(move, 5)
+    }
 }
 
 // 弹性动画
@@ -136,7 +141,7 @@ const style = computed(() => {
     }
 
     // 边距
-    let padding = normalizePadding2(Array.isArray(props.padding) ? props.padding : [props.padding])
+    let padding = normalizePadding(Array.isArray(props.padding) ? props.padding : [props.padding])
 
     // 宽度
     if (props.width > 0) {
@@ -200,7 +205,7 @@ const overlayStyle = computed(() => {
     overflow-y: scroll;
 }
 
-.petal-popup-body {
+.popup-body {
     padding: 20rpx;
 }
 
