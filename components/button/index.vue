@@ -1,5 +1,5 @@
 <template>
-    <button
+    <view
         :class="classList"
         :style="style"
         :disabled="props.disabled"
@@ -10,7 +10,7 @@
         <slot name="default">
             <text v-text="props.text"></text>
         </slot>
-    </button>
+    </view>
 </template>
 
 <script setup>
