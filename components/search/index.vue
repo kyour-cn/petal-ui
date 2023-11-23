@@ -1,13 +1,18 @@
 <template>
-    <view class="petal-search">
+    <view
+        class="petal-search"
+        :style="style"
+    >
         <PuiIcon
             class="search-icon"
             name="petal-icon-search"
             :size="50"
-            color="#ccc"
+            :color="puiStore.theme['subtitle']"
         />
         <view class="petal-search-input">
+            <PuiText v-if="props.disabled" :text="value || props.placeholder" color="subtitle" :size="28" />
             <input
+                v-else
                 type="text"
                 :placeholder="props.placeholder"
                 :disabled="props.disabled"
@@ -15,7 +20,7 @@
             />
         </view>
         <view class="petal-search-btn">
-            <view style="border-right: #CCCCCC solid 2rpx;">&nbsp;</view>
+            <view :style="{borderRight: puiStore.theme['divider'] + ' solid 2rpx'}">&nbsp;</view>
             <PuiButton
                 type="primary"
                 size="small"
@@ -33,7 +38,11 @@
 <script setup>
 import PuiIcon from "../icon"
 import PuiButton from "../button"
+import PuiText from "../text"
 import {computed} from "vue";
+import {usePetalUiStore} from "../../stores/petal-ui";
+
+const puiStore = usePetalUiStore()
 
 const emits = defineEmits([
     'update:modelValue',
@@ -66,12 +75,18 @@ const onSearch = () => {
     emits('onSearch', value.value)
 }
 
+const style = computed(() => {
+    return {
+        backgroundColor: puiStore.theme['bg-body'],
+        color: puiStore.theme['title']
+    }
+})
+
 </script>
 
 <style scoped>
 
 .petal-search {
-    background: white;
     border-radius: 50rpx;
     padding: 10rpx;
     margin: 10rpx 20rpx;
