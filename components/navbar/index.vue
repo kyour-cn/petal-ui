@@ -14,31 +14,33 @@
             paddingTop: style.paddingTop
         }"
     >
-        <PuiIcon
-            v-if="style.leftIcon"
-            class="left-icon"
-            :name="style.leftIcon"
-            :size="40"
-            :color="style.titleColor"
-            @click="clickLeft"
-        />
-        <view
-            class="title"
-            :style="{
+        <slot name="default">
+            <PuiIcon
+                v-if="style.leftIcon"
+                class="left-icon"
+                :name="style.leftIcon"
+                :size="40"
+                :color="style.titleColor"
+                @click="clickLeft"
+            />
+            <view
+                class="title"
+                :style="{
                 color: style.titleColor
             }"
-        >
-            <text v-text="props.title"/>
-        </view>
+            >
+                <text v-text="props.title"/>
+            </view>
 
-        <PuiIcon
-            v-if="props.rightIcon"
-            class="right-icon"
-            :name="props.rightIcon"
-            :size="40"
-            :color="style.titleColor"
-            @click="clickRight"
-        />
+            <PuiIcon
+                v-if="props.rightIcon"
+                class="right-icon"
+                :name="props.rightIcon"
+                :size="40"
+                :color="style.titleColor"
+                @click="clickRight"
+            />
+        </slot>
     </view>
 </template>
 
@@ -119,7 +121,6 @@ const style = computed(() => {
     height: 88rpx;
     display: flex;
     top: 0;
-    font-weight: 700;
     width: 100%;
     position: fixed;
     z-index: 999;
@@ -129,6 +130,7 @@ const style = computed(() => {
 .left-icon {
     margin-left: 20rpx;
 }
+
 .right-icon {
     margin-left: auto;
     margin-right: 20rpx;
@@ -140,10 +142,11 @@ const style = computed(() => {
     opacity: 0.7;
 }
 
-.title {
+.petal-navbar .title {
     padding-left: 20rpx;
     flex: 1;
     font-size: 30rpx;
+    font-weight: 700;
     line-height: 88rpx;
 }
 
