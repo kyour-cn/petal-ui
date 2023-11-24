@@ -25,6 +25,15 @@ import {usePetalUiStore} from "../../stores/petal-ui";
 const puiStore = usePetalUiStore()
 
 const props = defineProps({
+    modelValue: {
+        type: Number,
+        default: 0
+    },
+    // 是否可以切换
+    allowChange: {
+        type: Boolean,
+        default: true
+    },
     title: {
         type: String,
         default: 'Title'
@@ -39,6 +48,13 @@ const props = defineProps({
     },
 })
 
+const emits = defineEmits([
+    'update:modelValue',
+    'change'
+])
+
+provide('allowChange', props.allowChange)
+
 // 给子组件提供一个index
 let indexCount = 1
 provide('index', () => {
@@ -50,9 +66,16 @@ onMounted(() => {
     indexCount = 1
 })
 
+const value = computed({
+    get: () => props.modelValue,
+    set: (value) => {
+        emits('update:modelValue', value)
+        emits('change', value)
+    }
+})
+
 // 当前活动的item
-let activeIndex = ref(1)
-provide('activeIndex', activeIndex)
+provide('activeIndex', value)
 
 const style = computed(() => {
     return {

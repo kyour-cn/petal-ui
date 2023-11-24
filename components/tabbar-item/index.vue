@@ -1,5 +1,5 @@
 <template>
-    <view class="petal-tabbar-item" @click="activeIndex = index">
+    <view class="petal-tabbar-item" @click="onClick">
         <pui-icon
             class="icon"
             :name="style.icon"
@@ -41,6 +41,9 @@ const props = defineProps({
 
 const puiStore = usePetalUiStore()
 
+// 从父组件中获取allowChange属性，是否可以切换
+const allowChange = inject('allowChange', true)
+
 // 使用inject方法获取计算index的函数
 const index = ref(inject('index')());
 const activeIndex = inject('activeIndex', ref(0))
@@ -48,6 +51,12 @@ const activeIndex = inject('activeIndex', ref(0))
 const isActive = computed(() => {
     return activeIndex.value === index.value
 })
+
+const onClick = () => {
+    if (allowChange) {
+        activeIndex.value = index.value
+    }
+}
 
 const style = computed(() => {
 
