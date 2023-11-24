@@ -88,7 +88,6 @@ watch(value, () => {
 let offset = ref(value.value ? 0 : -props.height)
 
 let officeStep = Math.floor((puiStore.screenHeight - (puiStore.screenHeight - props.height)) / 40)
-console.log(officeStep, 'officeStep')
 
 // 移入移出位移动画
 const move = () => {
