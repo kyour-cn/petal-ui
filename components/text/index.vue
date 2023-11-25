@@ -1,6 +1,6 @@
 <template>
     <view class="petal-text" :style="style">
-        {{props.text}}
+        {{ props.text }}
     </view>
 </template>
 
@@ -40,16 +40,35 @@ const props = defineProps({
     weight: {
         type: String,
         default: 'normal'
+    },
+    maxLine: {
+        type: Number,
+        default: 0
+    },
+    // 自定义样式
+    _style: {
+        type: Object,
+        default: () => {
+            return {}
+        }
     }
 })
 
 const style = computed(() => {
-    return {
+    const obj = {
         color: puiStore.theme[props.color] || props.color,
         fontSize: props.size + 'rpx',
         lineHeight: props.lineHeight + 'rpx',
         textAlign: props.align,
-        fontWeight: props.weight
+        fontWeight: props.weight,
+    }
+    if (props.maxLine > 0) {
+        obj['-webkit-line-clamp'] = props.maxLine
+        obj['overflow'] = 'hidden'
+    }
+    return {
+        ...obj,
+        ...props._style
     }
 })
 
@@ -58,5 +77,9 @@ const style = computed(() => {
 
 <style scoped>
 
+.petal-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
 
 </style>
