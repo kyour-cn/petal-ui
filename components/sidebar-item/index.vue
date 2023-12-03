@@ -1,7 +1,14 @@
 <template>
-    <view class="petal-sidebar-item" :style="style" @click="onClick">
+    <view
+        :class="{
+            'petal-sidebar-item':true,
+            'petal-sidebar-item-active': isActive
+        }"
+        :style="style"
+        @click="onClick"
+    >
         <text class="petal-sidebar-title">
-            {{ props.title}}
+            {{ props.title }}
         </text>
     </view>
 
@@ -56,16 +63,32 @@ export default {
 
 .petal-sidebar-item {
     width: 100%;
-    height: 80rpx;
+    min-height: 80rpx;
+    margin: 10rpx 5rpx;
     background: white;
     display: flex;
     align-items: center;
-    justify-content: center;
+}
+
+.petal-sidebar-item:before {
+    content: '';
+    width: 6rpx;
+    height: 40rpx;
+}
+
+.petal-sidebar-item-active {
+    font-weight: bold;
+}
+
+.petal-sidebar-item-active:before {
+    background: #2550F7;
 }
 
 .petal-sidebar-title {
-    padding-left: 6rpx;
-    border-left: #2550F7 6rpx solid;
+    flex: 1;
+    text-align: center;
+    font-size: 28rpx;
+    color: #333;
 }
 
 </style>
