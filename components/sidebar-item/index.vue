@@ -44,7 +44,7 @@ const onClick = () => {
 
 const style = computed(() => {
     return {
-        background: isActive.value ? puiStore.theme['bg-body'] : puiStore.theme['bg-page'],
+        background: isActive.value ? puiStore.theme['bg-page'] : puiStore.theme['bg-body'],
     }
 })
 
@@ -69,9 +69,8 @@ export default {
 <style scoped>
 
 .petal-sidebar-item {
-    width: 100%;
     min-height: 80rpx;
-    margin: 10rpx 5rpx;
+    padding: 10rpx 5rpx;
     background: white;
     display: flex;
     align-items: center;

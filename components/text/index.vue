@@ -7,6 +7,7 @@
 <script setup>
 import {usePetalUiStore} from "../../stores/petal-ui";
 import {computed} from "vue";
+import {normalizePaddingString} from "../../lib/utils.js"
 
 const puiStore = usePetalUiStore()
 
@@ -45,6 +46,14 @@ const props = defineProps({
         type: Number,
         default: 0
     },
+    padding: {
+        type: [Number, Array, String],
+        default: ''
+    },
+    margin: {
+        type: [Number, Array, String],
+        default: ''
+    },
     // 自定义样式
     _style: {
         type: Object,
@@ -68,12 +77,37 @@ const style = computed(() => {
         obj['-webkit-box-orient'] = 'vertical'
         obj['overflow'] = 'hidden'
     }
+    if (props.padding) {
+        if (typeof props.padding === 'string') {
+            obj['padding'] = props.padding
+        } else {
+            obj['padding'] = normalizePaddingString(props.padding)
+        }
+    }
+    if (props.margin) {
+        if (typeof props.margin ==='string') {
+            obj['margin'] = props.margin
+        } else {
+            obj['margin'] = normalizePaddingString(props.margin)
+        }
+    }
+
     return {
         ...obj,
         ...props._style
     }
 })
 
+</script>
+
+<script>
+// 小程序去除自定义组件节点
+export default {
+    options: {
+        virtualHost: true,
+        styleIsolation: 'shared'
+    }
+}
 </script>
 
 <style scoped>
