@@ -16,3 +16,6 @@ pnpm-lock.yaml
 # Editor directories and files
 .idea
 .vscode
+
+manifest.json
+uni.scss
