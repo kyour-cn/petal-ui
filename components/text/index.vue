@@ -1,7 +1,7 @@
 <template>
-    <view class="petal-text" :style="style">
+    <text class="petal-text" :style="style">
         {{ props.text }}
-    </view>
+    </text>
 </template>
 
 <script setup>
@@ -64,6 +64,8 @@ const style = computed(() => {
     }
     if (props.maxLine > 0) {
         obj['-webkit-line-clamp'] = props.maxLine
+        obj['display'] = '-webkit-box'
+        obj['-webkit-box-orient'] = 'vertical'
         obj['overflow'] = 'hidden'
     }
     return {
@@ -74,12 +76,6 @@ const style = computed(() => {
 
 </script>
 
-
 <style scoped>
-
-.petal-text {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-}
 
 </style>
