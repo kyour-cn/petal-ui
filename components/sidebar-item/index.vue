@@ -7,9 +7,11 @@
         :style="style"
         @click="onClick"
     >
-        <text class="petal-sidebar-title">
-            {{ props.title }}
-        </text>
+        <text
+            class="petal-sidebar-title"
+            :style="titleStyle"
+            v-text="props.title"
+        />
     </view>
 
 </template>
@@ -42,8 +44,13 @@ const onClick = () => {
 
 const style = computed(() => {
     return {
-        // color: isActive.value ? puiStore.theme['primary'] : puiStore.theme['title'],
         background: isActive.value ? puiStore.theme['bg-body'] : puiStore.theme['bg-page'],
+    }
+})
+
+const titleStyle = computed(() => {
+    return {
+        color: puiStore.theme['title']
     }
 })
 
@@ -76,9 +83,6 @@ export default {
     height: 40rpx;
 }
 
-.petal-sidebar-item-active {
-    font-weight: bold;
-}
 
 .petal-sidebar-item-active:before {
     background: #2550F7;
@@ -88,7 +92,10 @@ export default {
     flex: 1;
     text-align: center;
     font-size: 28rpx;
-    color: #333;
+}
+
+.petal-sidebar-item-active .petal-sidebar-title {
+    font-weight: bold;
 }
 
 </style>
