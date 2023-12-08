@@ -52,10 +52,15 @@ const isActive = computed(() => {
     return activeIndex.value === index.value
 })
 
+const emits = defineEmits([
+    "click"
+]);
+
 const onClick = () => {
     if (allowChange) {
         activeIndex.value = index.value
     }
+    emits('click')
 }
 
 const style = computed(() => {

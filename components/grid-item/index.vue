@@ -8,6 +8,16 @@
 
 </script>
 
+<script>
+// 小程序去除自定义组件节点
+export default {
+    options: {
+        virtualHost: true,
+        styleIsolation: 'shared'
+    }
+}
+</script>
+
 <style scoped>
 .petal-grid-item {
     display: flex;
