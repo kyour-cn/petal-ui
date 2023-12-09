@@ -5,6 +5,7 @@
         :refresher-enabled="props.pullRefresh"
         :lower-threshold="props.offset"
         :refresher-triggered="loading"
+        :refresher-background="puiStore.theme['bg-page']"
         @scrolltoupper="scrollToUpper"
         @scrolltolower="scrollToLower"
         @refresherrefresh="onRefresh"
@@ -18,6 +19,9 @@
 
 <script setup>
 import {computed} from 'vue'
+import {usePetalUiStore} from "../../stores/petal-ui";
+
+const puiStore = usePetalUiStore()
 
 const props = defineProps({
     // 列表数据
@@ -48,7 +52,7 @@ const props = defineProps({
     // 是否开启下拉刷新
     pullRefresh: {
         type: Boolean,
-        default: true
+        default: false
     }
 })
 
