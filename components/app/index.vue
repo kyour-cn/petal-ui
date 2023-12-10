@@ -6,15 +6,22 @@
 
 <script setup>
 
-
 import {usePetalUiStore} from "../../stores/petal-ui";
 import {computed} from "vue";
 
 const puiStore = usePetalUiStore()
 
+const props = defineProps({
+    _style: {
+        type: Object,
+        default: {}
+    }
+})
+
 const style = computed(() => {
     return {
         background: puiStore.theme['bg-page'],
+        ...props._style
     }
 })
 
