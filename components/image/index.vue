@@ -5,6 +5,7 @@
         :lazy-load="props.lazyLoad"
         :style="style"
         @error="imageError"
+        @click="imageClick"
     />
 </template>
 
@@ -40,11 +41,15 @@ const props = defineProps({
 })
 
 const emits = defineEmits([
-    'error'
+    'error',
+    'click'
 ])
 
 const imageError = () => {
     emits('error')
+}
+const imageClick = () => {
+    emits('click')
 }
 
 const style = computed(() => {
