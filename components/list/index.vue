@@ -14,6 +14,7 @@
             <slot name="item" :item="item"/>
         </template>
         <view v-if="props.beforeLoad && loading" class="loading">加载中...</view>
+        <view v-if="props.finished" class="finished">没有更多了</view>
     </scroll-view>
 </template>
 
@@ -70,7 +71,7 @@ const loading = computed({
 })
 
 const scrollToLower = () => {
-    if (props.beforeLoad && !props.finished) {
+    if (props.beforeLoad && !props.finished && !props.loading) {
         loading.value = true
         emits('load')
     }
@@ -82,6 +83,7 @@ const scrollToUpper = () => {
 }
 
 const onRefresh = () => {
+    if (props.loading) return;
     emits('refresh')
     loading.value = true
 }
@@ -98,7 +100,7 @@ const onRefresh = () => {
     overflow-y: scroll;
 }
 
-.loading {
+.loading, .finished {
     text-align: center;
 }
 </style>
