@@ -3,6 +3,7 @@
         class="pui-list"
         scroll-y
         :refresher-enabled="props.pullRefresh"
+        :refresher-default-style="puiStore.dark ? 'white': 'black'"
         :lower-threshold="props.offset"
         :refresher-triggered="loading"
         :refresher-background="puiStore.theme['bg-page']"
@@ -13,8 +14,8 @@
         <template v-for="(item, key) in list" :key="key">
             <slot name="item" :item="item"/>
         </template>
-        <view v-if="props.beforeLoad && loading" class="loading">加载中...</view>
-        <view v-if="props.finished" class="finished">没有更多了</view>
+        <view v-if="props.beforeLoad && loading" :style="{color: puiStore.theme['title']}" class="loading">加载中...</view>
+        <view v-if="props.finished" :style="{color: puiStore.theme['title']}" class="finished">没有更多了</view>
     </scroll-view>
 </template>
 
