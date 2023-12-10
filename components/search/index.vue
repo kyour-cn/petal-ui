@@ -9,8 +9,13 @@
             :size="50"
             :color="puiStore.theme['subtitle']"
         />
-        <view class="petal-search-input">
-            <PuiText v-if="props.disabled" :text="value || props.placeholder" color="subtitle" :size="28" />
+        <view class="petal-search-input" @click="onInputClick">
+            <PuiText
+                v-if="props.disabled"
+                :text="value || props.placeholder"
+                color="subtitle"
+                :size="28"
+            />
             <input
                 v-else
                 type="text"
@@ -46,6 +51,7 @@ const puiStore = usePetalUiStore()
 
 const emits = defineEmits([
     'update:modelValue',
+    'input-click',
     'changing',
     'change',
     'onSearch'
@@ -73,6 +79,10 @@ const value = computed({
 
 const onSearch = () => {
     emits('onSearch', value.value)
+}
+
+const onInputClick = () => {
+    emits('input-click')
 }
 
 const style = computed(() => {
@@ -103,6 +113,7 @@ const style = computed(() => {
 
 .petal-search-input {
     flex: 1;
+    display: flex;
     padding: 10rpx;
 }
 </style>
