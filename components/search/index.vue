@@ -21,6 +21,7 @@
                 type="text"
                 :placeholder="props.placeholder"
                 :disabled="props.disabled"
+                v-model="value"
                 style="font-size: 28rpx"
             />
         </view>
@@ -54,7 +55,7 @@ const emits = defineEmits([
     'input-click',
     'changing',
     'change',
-    'onSearch'
+    'search'
 ])
 
 const props = defineProps({
@@ -78,7 +79,7 @@ const value = computed({
 })
 
 const onSearch = () => {
-    emits('onSearch', value.value)
+    emits('search', value.value)
 }
 
 const onInputClick = () => {
