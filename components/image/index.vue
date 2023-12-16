@@ -37,6 +37,10 @@ const props = defineProps({
     lazyLoad: {
         type: Boolean,
         default: false
+    },
+    _style: {
+        type: Object,
+        default: () => ({})
     }
 })
 
@@ -64,7 +68,10 @@ const style = computed(() => {
         obj.height = typeof props.height === "number" ? props.height + "rpx" : props.height
     }
 
-    return obj
+    return {
+        ...obj,
+        ...props._style
+    }
 })
 
 </script>
