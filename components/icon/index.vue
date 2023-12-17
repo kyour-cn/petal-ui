@@ -39,3 +39,13 @@ const onClick = () => {
 }
 
 </script>
+
+<script>
+// 小程序去除自定义组件节点
+export default {
+    options: {
+        virtualHost: true,
+        styleIsolation: 'shared'
+    }
+}
+</script>
