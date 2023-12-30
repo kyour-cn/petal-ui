@@ -15,14 +15,14 @@
         }"
     >
         <slot name="default">
-            <PuiIcon
-                v-if="style.leftIcon"
-                class="left-icon"
-                :name="style.leftIcon"
-                :size="40"
-                :color="style.titleColor"
-                @click="clickLeft"
-            />
+            <view class="left-icon" @click="clickLeft">
+                <PuiIcon
+                    v-if="style.leftIcon"
+                    :name="style.leftIcon"
+                    :size="40"
+                    :color="style.titleColor"
+                />
+            </view>
             <view
                 class="title"
                 :style="{

@@ -3,12 +3,13 @@
         class="petal-search"
         :style="style"
     >
-        <PuiIcon
-            class="search-icon"
-            name="petal-icon-search"
-            :size="50"
-            :color="puiStore.theme['subtitle']"
-        />
+        <view class="search-icon">
+            <PuiIcon
+                name="petal-icon-search"
+                :size="50"
+                :color="puiStore.theme['subtitle']"
+            />
+        </view>
         <view class="petal-search-input" @click="onInputClick">
             <PuiText
                 v-if="props.disabled"
