@@ -78,18 +78,10 @@ const style = computed(() => {
         obj['overflow'] = 'hidden'
     }
     if (props.padding) {
-        if (typeof props.padding === 'string') {
-            obj['padding'] = props.padding
-        } else {
-            obj['padding'] = normalizePaddingString(props.padding)
-        }
+        obj['padding'] = normalizePaddingString(props.padding)
     }
     if (props.margin) {
-        if (typeof props.margin ==='string') {
-            obj['margin'] = props.margin
-        } else {
-            obj['margin'] = normalizePaddingString(props.margin)
-        }
+        obj['margin'] = normalizePaddingString(props.margin)
     }
 
     return {
