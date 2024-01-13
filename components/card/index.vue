@@ -21,7 +21,7 @@ const props = defineProps({
     },
     round: {
         type: Number,
-        default: 10
+        default: 20
     },
     width: {
         type: Number,
