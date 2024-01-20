@@ -94,7 +94,6 @@ const style = computed(() => {
     font-size: 35rpx;
     margin: 10rpx;
     padding-bottom: 8rpx;
-    flex: 1;
     white-space: nowrap;
 }
 
