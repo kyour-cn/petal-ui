@@ -24,13 +24,20 @@ const props = defineProps({
         type: Number,
         default: 999
     },
+    // 左侧返回箭头
     leftArrow: {
         type: Boolean,
         default: false
     },
+    // 左侧图标
+    leftIcon: {
+        type: String,
+        default: ''
+    },
+    // 右侧图标
     rightIcon: {
         type: String,
-        default: 'Title'
+        default: ''
     }
 })
 
@@ -49,7 +56,8 @@ const clickRight = () => {
 
 const style = computed(() => {
 
-    let leftIcon = ''
+    // 左侧图标
+    let leftIcon = props.leftIcon
     if (props.leftArrow) {
         leftIcon = 'petal-icon-back'
     }
