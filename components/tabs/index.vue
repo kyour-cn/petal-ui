@@ -27,12 +27,9 @@ const emits = defineEmits([
 // 生成随机ID
 const tabId = 'tabs_' + Math.floor(Math.random() * 10000)
 
-// TODO: 还需优化滚动位置
+// 滚动到指定位置
 const showIntoId = computed(() => {
-    if(active.value - props.list.length > props.list.length / 2) {
-        return tabId + (active.value + 3)
-    }
-    return tabId + (active.value - 3)
+    return tabId + (active.value -1)
 })
 
 const onChange = (key) => {
