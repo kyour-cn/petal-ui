@@ -1,4 +1,9 @@
 <script setup>
+
+// TODO: 计划任务如下
+// 1. 支持内容插槽
+// 2. 支持内容左右滑动切换
+
 import {computed} from "vue";
 import {usePetalUiStore} from "../../stores/petal-ui";
 
@@ -86,6 +91,7 @@ const style = computed(() => {
 }
 
 .petal-tabs .tab-item {
+    font-size: 35rpx;
     margin: 10rpx;
     padding-bottom: 8rpx;
     flex: 1;
@@ -93,8 +99,9 @@ const style = computed(() => {
 }
 
 .petal-tabs .active {
-    color: #0051ff;
-    border-bottom: 4rpx solid #0051ff;
+    font-size: 50rpx;
+    /*color: #0051ff;
+    border-bottom: 4rpx solid #0051ff;*/
     padding-bottom: 4rpx;
 }
 
