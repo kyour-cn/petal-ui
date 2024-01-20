@@ -1,17 +1,3 @@
-<template>
-    <view class="petal-slider">
-        <view class="petal-slider-inner">
-            <view class="petal-slider-bar" :style="{width: `${positionX}px`}"/>
-            <view
-                class="petal-slider-handle"
-                :style="{left: (positionX - 10) + 'px'}"
-                @touchmove.native="touchMove"
-                @touchend="touchEnd"
-            />
-        </view>
-    </view>
-</template>
-
 <script setup>
 
 // TODO: 计划任务如下
@@ -110,6 +96,20 @@ const touchEnd = () => {
 }
 
 </script>
+
+<template>
+    <view class="petal-slider">
+        <view class="petal-slider-inner">
+            <view class="petal-slider-bar" :style="{width: `${positionX}px`}"/>
+            <view
+                class="petal-slider-handle"
+                :style="{left: (positionX - 10) + 'px'}"
+                @touchmove.native="touchMove"
+                @touchend="touchEnd"
+            />
+        </view>
+    </view>
+</template>
 
 <style scoped>
 .petal-slider {

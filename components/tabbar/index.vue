@@ -1,22 +1,3 @@
-<template>
-    <view
-        v-if="props.placeholder"
-        class="petal-tabbar-placeholder"
-    />
-    <view
-        class="petal-tabbar"
-        :style="{
-            background: style.bgColor,
-            zIndex: props.zIndex,
-            paddingBottom: style.paddingBottom
-        }"
-    >
-        <slot name="default">
-            None
-        </slot>
-    </view>
-</template>
-
 <script setup>
 
 import {computed, onMounted, provide} from "vue";
@@ -86,6 +67,25 @@ const style = computed(() => {
 })
 
 </script>
+
+<template>
+    <view
+        v-if="props.placeholder"
+        class="petal-tabbar-placeholder"
+    />
+    <view
+        class="petal-tabbar"
+        :style="{
+            background: style.bgColor,
+            zIndex: props.zIndex,
+            paddingBottom: style.paddingBottom
+        }"
+    >
+        <slot name="default">
+            None
+        </slot>
+    </view>
+</template>
 
 <style scoped>
 

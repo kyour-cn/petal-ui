@@ -1,21 +1,3 @@
-<template>
-    <view
-        :class="{
-            'petal-sidebar-item':true,
-            'petal-sidebar-item-active': isActive
-        }"
-        :style="style"
-        @click="onClick"
-    >
-        <text
-            class="petal-sidebar-title"
-            :style="titleStyle"
-            v-text="props.title"
-        />
-    </view>
-
-</template>
-
 <script setup>
 
 import {computed, inject, ref} from "vue";
@@ -65,6 +47,24 @@ export default {
     }
 }
 </script>
+
+<template>
+    <view
+        :class="{
+            'petal-sidebar-item':true,
+            'petal-sidebar-item-active': isActive
+        }"
+        :style="style"
+        @click="onClick"
+    >
+        <text
+            class="petal-sidebar-title"
+            :style="titleStyle"
+            v-text="props.title"
+        />
+    </view>
+
+</template>
 
 <style scoped>
 

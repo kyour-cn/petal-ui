@@ -1,15 +1,3 @@
-<template>
-    <view
-        :class="{
-          'pui-cell-group': true,
-          'pui-cell-group-dark': puiStore.dark
-        }"
-        :style="style"
-    >
-        <slot name="default"/>
-    </view>
-</template>
-
 <script setup>
 
 import {computed} from "vue";
@@ -36,6 +24,19 @@ export default {
     }
 }
 </script>
+
+<template>
+    <view
+        :class="{
+          'pui-cell-group': true,
+          'pui-cell-group-dark': puiStore.dark
+        }"
+        :style="style"
+    >
+        <slot name="default"/>
+    </view>
+</template>
+
 <style scoped>
 
 .pui-cell-group {

@@ -1,22 +1,3 @@
-<template>
-    <view
-        class="petal-popup-overlay"
-        v-if="offset !== -props.height"
-        :style="overlayStyle"
-        @click="onClickOverlay"
-    >
-        <view
-            class="petal-popup"
-            :style="style"
-            @click.stop=""
-        >
-            <view class="popup-body">
-                <slot name="default"/>
-            </view>
-        </view>
-    </view>
-</template>
-
 <script setup>
 
 import {computed, ref, watch} from "vue";
@@ -96,7 +77,7 @@ const move = () => {
         offset.value = 0
 
         // 弹性动画
-        if(props.position !== 'center') elasticAnimation()
+        if (props.position !== 'center') elasticAnimation()
     } else if (!value.value && offset.value <= -props.height) {
         offset.value = -props.height
     } else {
@@ -179,7 +160,6 @@ const style = computed(() => {
 })
 
 const overlayStyle = computed(() => {
-
     const ratio = Math.abs(offset.value) / props.height
     const opacity = (1 - ratio) * (puiStore.dark ? 0.7 : 0.5)
 
@@ -190,6 +170,25 @@ const overlayStyle = computed(() => {
 })
 
 </script>
+
+<template>
+    <view
+        class="petal-popup-overlay"
+        v-if="offset !== -props.height"
+        :style="overlayStyle"
+        @click="onClickOverlay"
+    >
+        <view
+            class="petal-popup"
+            :style="style"
+            @click.stop=""
+        >
+            <view class="popup-body">
+                <slot name="default"/>
+            </view>
+        </view>
+    </view>
+</template>
 
 <style scoped>
 .petal-popup-overlay {

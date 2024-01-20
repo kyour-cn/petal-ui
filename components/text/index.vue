@@ -1,9 +1,3 @@
-<template>
-    <text class="petal-text" :style="style">
-        {{ props.text }}
-    </text>
-</template>
-
 <script setup>
 import {usePetalUiStore} from "../../stores/petal-ui";
 import {computed} from "vue";
@@ -102,6 +96,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<template>
+    <text class="petal-text" :style="style">
+        {{ props.text }}
+    </text>
+</template>

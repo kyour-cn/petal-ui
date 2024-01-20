@@ -1,49 +1,3 @@
-<template>
-    <view
-        v-if="props.placeholder"
-        class="petal-navbar-placeholder"
-        :style="{
-            paddingTop: style.paddingTop
-        }"
-    />
-    <view
-        class="petal-navbar"
-        :style="{
-            background: style.bgColor,
-            zIndex: props.zIndex,
-            paddingTop: style.paddingTop
-        }"
-    >
-        <slot name="default">
-            <view class="left-icon" @click="clickLeft">
-                <PuiIcon
-                    v-if="style.leftIcon"
-                    :name="style.leftIcon"
-                    :size="40"
-                    :color="style.titleColor"
-                />
-            </view>
-            <view
-                class="title"
-                :style="{
-                color: style.titleColor
-            }"
-            >
-                <text v-text="props.title"/>
-            </view>
-
-            <PuiIcon
-                v-if="props.rightIcon"
-                class="right-icon"
-                :name="props.rightIcon"
-                :size="40"
-                :color="style.titleColor"
-                @click="clickRight"
-            />
-        </slot>
-    </view>
-</template>
-
 <script setup>
 
 // TODO: 计划任务如下
@@ -109,6 +63,52 @@ const style = computed(() => {
 })
 
 </script>
+
+<template>
+    <view
+        v-if="props.placeholder"
+        class="petal-navbar-placeholder"
+        :style="{
+            paddingTop: style.paddingTop
+        }"
+    />
+    <view
+        class="petal-navbar"
+        :style="{
+            background: style.bgColor,
+            zIndex: props.zIndex,
+            paddingTop: style.paddingTop
+        }"
+    >
+        <slot name="default">
+            <view class="left-icon" @click="clickLeft">
+                <PuiIcon
+                    v-if="style.leftIcon"
+                    :name="style.leftIcon"
+                    :size="40"
+                    :color="style.titleColor"
+                />
+            </view>
+            <view
+                class="title"
+                :style="{
+                color: style.titleColor
+            }"
+            >
+                <text v-text="props.title"/>
+            </view>
+
+            <PuiIcon
+                v-if="props.rightIcon"
+                class="right-icon"
+                :name="props.rightIcon"
+                :size="40"
+                :color="style.titleColor"
+                @click="clickRight"
+            />
+        </slot>
+    </view>
+</template>
 
 <style scoped>
 

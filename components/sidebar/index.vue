@@ -1,10 +1,3 @@
-<template>
-    <view class="petal-sidebar">
-        <slot name="default"/>
-    </view>
-
-</template>
-
 <script setup>
 
 import {computed, onMounted, provide} from "vue";
@@ -44,8 +37,14 @@ const value = computed({
 // 当前活动的item
 provide('activeIndex', value)
 
-
 </script>
+
+<template>
+    <view class="petal-sidebar">
+        <slot name="default"/>
+    </view>
+
+</template>
 
 <style scoped>
 

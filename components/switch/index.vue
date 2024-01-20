@@ -1,19 +1,3 @@
-<template>
-    <view
-        :class="{
-            'petal-switch': true,
-            'petal-disabled': props.disabled,
-            'switch-on': value
-        }"
-        :style="{
-            backgroundColor: style.backgroundColor
-        }"
-        @click="toggle"
-    >
-        <view class="switch-circle"/>
-    </view>
-</template>
-
 <script setup>
 import {computed} from 'vue';
 import {usePetalUiStore} from "../../stores/petal-ui";
@@ -51,6 +35,22 @@ const style = computed(() => {
 })
 
 </script>
+
+<template>
+    <view
+        :class="{
+            'petal-switch': true,
+            'petal-disabled': props.disabled,
+            'switch-on': value
+        }"
+        :style="{
+            backgroundColor: style.backgroundColor
+        }"
+        @click="toggle"
+    >
+        <view class="switch-circle"/>
+    </view>
+</template>
 
 <style scoped>
 .petal-switch {

@@ -1,9 +1,3 @@
-<template>
-    <view class="petal-grid-item">
-        <slot name="default"></slot>
-    </view>
-</template>
-
 <script setup>
 
 </script>
@@ -17,6 +11,12 @@ export default {
     }
 }
 </script>
+
+<template>
+    <view class="petal-grid-item">
+        <slot name="default"></slot>
+    </view>
+</template>
 
 <style scoped>
 .petal-grid-item {

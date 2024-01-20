@@ -1,47 +1,3 @@
-<template>
-    <view
-        class="petal-search"
-        :style="style"
-    >
-        <view class="search-icon">
-            <PuiIcon
-                name="petal-icon-search"
-                :size="50"
-                :color="puiStore.theme['subtitle']"
-            />
-        </view>
-        <view class="petal-search-input" @click="onInputClick">
-            <PuiText
-                v-if="props.disabled"
-                :text="value || props.placeholder"
-                color="subtitle"
-                :size="28"
-            />
-            <input
-                v-else
-                type="text"
-                :placeholder="props.placeholder"
-                :disabled="props.disabled"
-                v-model="value"
-                style="font-size: 28rpx"
-            />
-        </view>
-        <view class="petal-search-btn">
-            <view :style="{borderRight: puiStore.theme['divider'] + ' solid 2rpx'}">&nbsp;</view>
-            <PuiButton
-                type="primary"
-                size="small"
-                background="rgba(0,0,0,0)"
-                color="primary"
-                :font-size="26"
-                @click="onSearch"
-            >
-                搜索
-            </PuiButton>
-        </view>
-    </view>
-</template>
-
 <script setup>
 import PuiIcon from "../icon"
 import PuiButton from "../button"
@@ -95,6 +51,50 @@ const style = computed(() => {
 })
 
 </script>
+
+<template>
+    <view
+        class="petal-search"
+        :style="style"
+    >
+        <view class="search-icon">
+            <PuiIcon
+                name="petal-icon-search"
+                :size="50"
+                :color="puiStore.theme['subtitle']"
+            />
+        </view>
+        <view class="petal-search-input" @click="onInputClick">
+            <PuiText
+                v-if="props.disabled"
+                :text="value || props.placeholder"
+                color="subtitle"
+                :size="28"
+            />
+            <input
+                v-else
+                type="text"
+                :placeholder="props.placeholder"
+                :disabled="props.disabled"
+                v-model="value"
+                style="font-size: 28rpx"
+            />
+        </view>
+        <view class="petal-search-btn">
+            <view :style="{borderRight: puiStore.theme['divider'] + ' solid 2rpx'}">&nbsp;</view>
+            <PuiButton
+                type="primary"
+                size="small"
+                background="rgba(0,0,0,0)"
+                color="primary"
+                :font-size="26"
+                @click="onSearch"
+            >
+                搜索
+            </PuiButton>
+        </view>
+    </view>
+</template>
 
 <style scoped>
 

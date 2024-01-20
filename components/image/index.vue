@@ -1,14 +1,3 @@
-<template>
-    <image
-        :src="props.src"
-        :mode="props.mode"
-        :lazy-load="props.lazyLoad"
-        :style="style"
-        @error="imageError"
-        @click="imageClick"
-    />
-</template>
-
 <script setup>
 
 import {computed} from "vue";
@@ -76,6 +65,13 @@ const style = computed(() => {
 
 </script>
 
-<style scoped>
-
-</style>
+<template>
+    <image
+        :src="props.src"
+        :mode="props.mode"
+        :lazy-load="props.lazyLoad"
+        :style="style"
+        @error="imageError"
+        @click="imageClick"
+    />
+</template>

@@ -1,14 +1,3 @@
-<template>
-    <text
-        :class="props.name"
-        :style="{
-            fontSize: props.size + 'rpx',
-            color: props.color
-        }"
-        @click="onClick"
-    />
-</template>
-
 <script setup>
 
 // TODO: 计划任务如下
@@ -49,3 +38,14 @@ export default {
     }
 }
 </script>
+
+<template>
+    <text
+        :class="props.name"
+        :style="{
+            fontSize: props.size + 'rpx',
+            color: props.color
+        }"
+        @click="onClick"
+    />
+</template>

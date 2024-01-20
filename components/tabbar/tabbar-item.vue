@@ -1,21 +1,3 @@
-<template>
-    <view class="petal-tabbar-item" @click="onClick">
-        <pui-icon
-            class="icon"
-            :name="style.icon"
-            :size="40"
-            :color="style.titleColor"
-        />
-        <text
-            class="name"
-            :style="{
-                color: style.titleColor
-            }"
-            v-text="name"
-        />
-    </view>
-</template>
-
 <script setup>
 
 import PuiIcon from "../icon"
@@ -86,6 +68,24 @@ export default {
     }
 }
 </script>
+
+<template>
+    <view class="petal-tabbar-item" @click="onClick">
+        <pui-icon
+            class="icon"
+            :name="style.icon"
+            :size="40"
+            :color="style.titleColor"
+        />
+        <text
+            class="name"
+            :style="{
+                color: style.titleColor
+            }"
+            v-text="name"
+        />
+    </view>
+</template>
 
 <style scoped>
 

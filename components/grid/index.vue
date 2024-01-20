@@ -1,14 +1,3 @@
-<template>
-    <view
-        class="petal-grid"
-        :style="{
-            gridTemplateColumns: `repeat(${props.col}, 1fr)`
-        }"
-    >
-        <slot name="default"></slot>
-    </view>
-</template>
-
 <script setup>
 
 const props = defineProps({
@@ -23,6 +12,17 @@ const props = defineProps({
 })
 
 </script>
+
+<template>
+    <view
+        class="petal-grid"
+        :style="{
+            gridTemplateColumns: `repeat(${props.col}, 1fr)`
+        }"
+    >
+        <slot name="default"></slot>
+    </view>
+</template>
 
 <style scoped>
 

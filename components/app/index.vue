@@ -1,9 +1,3 @@
-<template>
-    <view class="pui-app" :style="style">
-        <slot name="default"></slot>
-    </view>
-</template>
-
 <script setup>
 
 import {usePetalUiStore} from "../../stores/petal-ui";
@@ -26,6 +20,12 @@ const style = computed(() => {
 })
 
 </script>
+
+<template>
+    <view class="pui-app" :style="style">
+        <slot name="default"></slot>
+    </view>
+</template>
 
 <style scoped>
 .pui-app {

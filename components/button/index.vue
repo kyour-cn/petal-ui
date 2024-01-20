@@ -1,18 +1,3 @@
-<template>
-    <view
-        :class="classList"
-        :style="style"
-        :disabled="props.disabled"
-        @click="onClick"
-        @touchstart="onTouchStart"
-        @touchend="onTouchEnd"
-    >
-        <slot name="default">
-            <text v-text="props.text"></text>
-        </slot>
-    </view>
-</template>
-
 <script setup>
 
 // TODO: 计划任务如下
@@ -146,6 +131,21 @@ const style = computed(() => {
 })
 
 </script>
+
+<template>
+    <view
+        :class="classList"
+        :style="style"
+        :disabled="props.disabled"
+        @click="onClick"
+        @touchstart="onTouchStart"
+        @touchend="onTouchEnd"
+    >
+        <slot name="default">
+            <text v-text="props.text"></text>
+        </slot>
+    </view>
+</template>
 
 <style scoped>
 

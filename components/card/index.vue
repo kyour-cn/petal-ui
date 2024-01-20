@@ -1,12 +1,3 @@
-<template>
-    <view
-        class="petal-card"
-        :style="style"
-    >
-        <slot name="default" />
-    </view>
-</template>
-
 <script setup>
 
 import {computed} from "vue";
@@ -66,6 +57,15 @@ const style = computed(() => {
 })
 
 </script>
+
+<template>
+    <view
+        class="petal-card"
+        :style="style"
+    >
+        <slot name="default" />
+    </view>
+</template>
 
 <style scoped>
 

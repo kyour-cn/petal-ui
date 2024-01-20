@@ -1,19 +1,3 @@
-<template>
-    <view class="petal-tab" :style="style">
-        <view
-            v-for="(item, key) in tabList"
-            :key="key"
-            :class="{
-                'tab-item': true,
-                'active': active === key
-            }"
-            @click="active = key"
-        >
-            {{item.name}}
-        </view>
-    </view>
-</template>
-
 <script setup>
 import {computed} from "vue";
 import {usePetalUiStore} from "../../stores/petal-ui";
@@ -53,6 +37,22 @@ const style = computed(() => {
 })
 
 </script>
+
+<template>
+    <view class="petal-tab" :style="style">
+        <view
+            v-for="(item, key) in tabList"
+            :key="key"
+            :class="{
+                'tab-item': true,
+                'active': active === key
+            }"
+            @click="active = key"
+        >
+            {{item.name}}
+        </view>
+    </view>
+</template>
 
 <style scoped>
 
