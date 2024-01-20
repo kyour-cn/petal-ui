@@ -1,10 +1,8 @@
 <script setup>
-
-// TODO: 计划任务如下
-// 1. 支持图片图标
-// 2. 支持自定义图标
+import {computed} from "vue";
 
 const props = defineProps({
+    // 字体图标class名称
     name: {
         type: String,
         default: ''
@@ -17,6 +15,13 @@ const props = defineProps({
         type: String,
         default: ''
     }
+})
+
+// 当前图标是否是图片。
+const isImg = computed(() => {
+    return props.name.includes('/') ||
+        props.name.substring(0, 5) === 'data:' ||
+        props.name.substring(0, 4) === 'http';
 })
 
 const emits = defineEmits([
@@ -41,10 +46,20 @@ export default {
 
 <template>
     <text
+        v-if="!isImg"
         :class="props.name"
         :style="{
             fontSize: props.size + 'rpx',
             color: props.color
+        }"
+        @click="onClick"
+    />
+    <image
+        v-else
+        :src="props.name"
+        :style="{
+            width: props.size + 'rpx',
+            height: props.size + 'rpx'
         }"
         @click="onClick"
     />
