@@ -78,6 +78,7 @@ const style = computed(() => {
                 :disabled="props.disabled"
                 v-model="value"
                 style="font-size: 28rpx"
+                @confirm="onSearch"
             />
         </view>
         <view class="petal-search-btn">
