@@ -1,4 +1,5 @@
 <script setup>
+import PuiLoading from '../loading'
 import {computed} from 'vue'
 import {usePetalUiStore} from "../../stores/petal-ui";
 
@@ -77,7 +78,6 @@ const onRefresh = () => {
         :refresher-enabled="props.pullRefresh"
         :refresher-default-style="puiStore.dark ? 'white': 'black'"
         :lower-threshold="props.offset"
-        :refresher-triggered="loading"
         :refresher-background="puiStore.theme['bg-page']"
         @scrolltoupper="scrollToUpper"
         @scrolltolower="scrollToLower"
@@ -86,8 +86,11 @@ const onRefresh = () => {
         <template v-for="(item, key) in list" :key="key">
             <slot name="item" :item="item"/>
         </template>
-        <view v-if="props.beforeLoad && loading" :style="{color: puiStore.theme['title']}" class="loading">加载中...</view>
-        <view v-if="props.finished" :style="{color: puiStore.theme['title']}" class="finished">没有更多了</view>
+        <view v-if="props.beforeLoad && loading" :style="{color: puiStore.theme['title']}" class="loading">
+            <PuiLoading/>
+            <view>加载中...</view>
+        </view>
+        <view v-else-if="props.finished" :style="{color: puiStore.theme['title']}" class="finished">没有更多了</view>
     </scroll-view>
 </template>
 
