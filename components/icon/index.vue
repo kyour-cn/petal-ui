@@ -1,5 +1,8 @@
 <script setup>
 import {computed} from "vue";
+import {usePetalUiStore} from "../../stores/petal-ui";
+
+const puiStore = usePetalUiStore()
 
 const props = defineProps({
     // 字体图标class名称
@@ -13,7 +16,7 @@ const props = defineProps({
     },
     color: {
         type: String,
-        default: ''
+        default: 'title'
     }
 })
 
@@ -32,6 +35,13 @@ const onClick = () => {
     emits('click')
 }
 
+const style = computed(() => {
+    return {
+        color: puiStore.theme[props.color],
+        fontSize: props.size + 'rpx'
+    }
+})
+
 </script>
 
 <script>
@@ -48,10 +58,7 @@ export default {
     <text
         v-if="!isImg"
         :class="props.name"
-        :style="{
-            fontSize: props.size + 'rpx',
-            color: props.color
-        }"
+        :style="style"
         @click="onClick"
     />
     <image
