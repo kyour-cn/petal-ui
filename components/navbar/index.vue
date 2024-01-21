@@ -1,9 +1,5 @@
 <script setup>
 
-// TODO: 计划任务如下
-// 1. 新增左侧、右侧图标
-// 2. 新增插槽支持自定义内容
-
 import {computed} from "vue";
 
 import {usePetalUiStore} from "../../stores/petal-ui";
@@ -89,14 +85,16 @@ const style = computed(() => {
         }"
     >
         <slot name="default">
-            <view class="left-icon" @click="clickLeft">
-                <PuiIcon
-                    v-if="style.leftIcon"
-                    :name="style.leftIcon"
-                    :size="40"
-                    :color="style.titleColor"
-                />
-            </view>
+            <slot name="left">
+                <view class="left-icon" @click="clickLeft">
+                    <PuiIcon
+                        v-if="style.leftIcon"
+                        :name="style.leftIcon"
+                        :size="40"
+                        :color="style.titleColor"
+                    />
+                </view>
+            </slot>
             <view
                 class="title"
                 :style="{
@@ -106,14 +104,16 @@ const style = computed(() => {
                 <text v-text="props.title"/>
             </view>
 
-            <PuiIcon
-                v-if="props.rightIcon"
-                class="right-icon"
-                :name="props.rightIcon"
-                :size="40"
-                :color="style.titleColor"
-                @click="clickRight"
-            />
+            <slot name="right">
+                <PuiIcon
+                    v-if="props.rightIcon"
+                    class="right-icon"
+                    :name="props.rightIcon"
+                    :size="40"
+                    :color="style.titleColor"
+                    @click="clickRight"
+                />
+            </slot>
         </slot>
     </view>
 </template>
