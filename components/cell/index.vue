@@ -1,45 +1,9 @@
-<template>
-
-    <view
-        :class="{'pui-cell': true, 'clickable': props.isLink}"
-        @click="onClick"
-    >
-        <view class="title">
-            <text v-text="props.title"/>
-            <text
-                v-if="props.label !== ''"
-                class="label"
-                :style="{
-                    color: style.labelColor
-                }"
-                v-text="props.label"
-            />
-        </view>
-        <view
-            v-if="props.value !== ''"
-            class="value"
-            :style="{
-                color: style.valueColor
-            }"
-        >
-            <text v-text="props.value"/>
-        </view>
-        <PuiIcon
-            v-if="style.rightIcon"
-            class="right-icon"
-            :name="style.rightIcon"
-            :color="style.valueColor"
-        />
-    </view>
-
-</template>
-
 <script setup>
 
 // TODO: 计划任务如下
 // 1. ✅ isLink属性，用于是否显示右侧箭头
 // 2. 增加icon属性，用于显示左侧icon
-// 3. 所有内容支持插槽，用于自定义内容
+// 3. ✅ 所有内容支持插槽，用于自定义内容
 
 import {computed} from "vue";
 import {usePetalUiStore} from "../../stores/petal-ui";
@@ -98,6 +62,43 @@ export default {
     }
 }
 </script>
+
+<template>
+
+    <view
+        :class="{'pui-cell': true, 'clickable': props.isLink}"
+        @click="onClick"
+    >
+        <view class="title">
+            <text v-text="props.title"/>
+            <text
+                v-if="props.label !== ''"
+                class="label"
+                :style="{
+                    color: style.labelColor
+                }"
+                v-text="props.label"
+            />
+        </view>
+        <view
+            class="value"
+            :style="{
+                color: style.valueColor
+            }"
+        >
+            <slot name="value">
+                <text v-if="props.value !== ''" v-text="props.value"/>
+            </slot>
+        </view>
+        <PuiIcon
+            v-if="style.rightIcon"
+            class="right-icon"
+            :name="style.rightIcon"
+            :color="style.valueColor"
+        />
+    </view>
+
+</template>
 
 <style scoped>
 
