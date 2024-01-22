@@ -1,11 +1,22 @@
 <script setup>
 
 import {computed, onMounted, provide} from "vue";
+import {usePetalUiStore} from "../../stores/petal-ui";
+
+const puiStore = usePetalUiStore()
 
 const props = defineProps({
     modelValue: {
         type: Number,
         default: 1
+    },
+    background: {
+        type: String,
+        default: 'bg-body'
+    },
+    _style: {
+        type: Object,
+        default: {}
     }
 })
 
@@ -37,10 +48,17 @@ const value = computed({
 // 当前活动的item
 provide('activeIndex', value)
 
+const style = computed(() => {
+    return {
+        backgroundColor: puiStore.theme[props.background] ? puiStore.theme[props.background] : props.background,
+        ...props._style
+    }
+})
+
 </script>
 
 <template>
-    <view class="petal-sidebar">
+    <view class="petal-sidebar" :style="style">
         <slot name="default"/>
     </view>
 
@@ -51,6 +69,7 @@ provide('activeIndex', value)
 .petal-sidebar {
     width: 160rpx;
     min-height: 300rpx;
+    overflow-y: scroll;
 }
 
 </style>
