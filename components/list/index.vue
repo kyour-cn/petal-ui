@@ -74,9 +74,10 @@ const onRefresh = () => {
 <template>
     <scroll-view
         class="pui-list"
-        scroll-y
+        :scroll-y="true"
+        :refresher-triggered="loading"
+        refresher-default-style="none"
         :refresher-enabled="props.pullRefresh"
-        :refresher-default-style="puiStore.dark ? 'white': 'black'"
         :lower-threshold="props.offset"
         :refresher-background="puiStore.theme['bg-page']"
         @scrolltoupper="scrollToUpper"
