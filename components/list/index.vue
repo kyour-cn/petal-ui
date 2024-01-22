@@ -94,7 +94,7 @@ const onRefresh = () => {
                 <PuiEmpty />
             </slot>
         </view>
-        <view v-else-if="props.beforeLoad && loading" :style="{color: puiStore.theme['title']}" class="loading">
+        <view v-else-if="loading" :style="{color: puiStore.theme['title']}" class="loading">
             <PuiLoading/>
             <view>加载中...</view>
         </view>
