@@ -66,7 +66,7 @@ export default {
 <template>
 
     <view
-        :class="{'pui-cell': true, 'clickable': props.isLink}"
+        :class="{'petal-cell': true, 'clickable': props.isLink}"
         @click="onClick"
     >
         <view class="title">
@@ -102,7 +102,7 @@ export default {
 
 <style scoped>
 
-.pui-cell {
+.petal-cell {
     display: flex;
     padding: 0 20rpx;
 

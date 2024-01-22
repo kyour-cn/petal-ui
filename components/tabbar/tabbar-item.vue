@@ -71,7 +71,7 @@ export default {
 
 <template>
     <view class="petal-tabbar-item" @click="onClick">
-        <pui-icon
+        <PuiIcon
             class="icon"
             :name="style.icon"
             :size="40"

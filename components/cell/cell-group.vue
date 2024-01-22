@@ -28,8 +28,8 @@ export default {
 <template>
     <view
         :class="{
-          'pui-cell-group': true,
-          'pui-cell-group-dark': puiStore.dark
+          'petal-cell-group': true,
+          'petal-cell-group-dark': puiStore.dark
         }"
         :style="style"
     >
@@ -39,17 +39,17 @@ export default {
 
 <style scoped>
 
-.pui-cell-group {
+.petal-cell-group {
     padding: 10rpx 0;
     margin: 20rpx;
     border-radius: 30rpx;
 }
 
-.pui-cell-group :deep(.pui-cell:not(:last-child)) {
+.petal-cell-group :deep(.petal-cell:not(:last-child)) {
     position: relative;
 }
 
-.pui-cell-group :deep(.pui-cell:not(:last-child)::after) {
+.petal-cell-group :deep(.petal-cell:not(:last-child)::after) {
     position: absolute;
     box-sizing: border-box;
     content: " ";
@@ -60,7 +60,7 @@ export default {
     border-bottom: 1px solid #E8E8E8;
 }
 
-.pui-cell-group-dark :deep(.pui-cell:not(:last-child)::after) {
+.petal-cell-group-dark :deep(.petal-cell:not(:last-child)::after) {
     position: absolute;
     box-sizing: border-box;
     content: " ";

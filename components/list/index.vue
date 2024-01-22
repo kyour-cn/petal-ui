@@ -74,7 +74,7 @@ const onRefresh = () => {
 
 <template>
     <scroll-view
-        class="pui-list"
+        class="petal-list"
         :scroll-y="true"
         :refresher-triggered="loading"
         refresher-default-style="none"
@@ -104,7 +104,7 @@ const onRefresh = () => {
 
 <style scoped>
 
-.pui-list {
+.petal-list {
     height: 100%;
     display: flex;
     flex-direction: column;

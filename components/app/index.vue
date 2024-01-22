@@ -22,13 +22,13 @@ const style = computed(() => {
 </script>
 
 <template>
-    <view class="pui-app" :style="style">
+    <view class="petal-app" :style="style">
         <slot name="default"></slot>
     </view>
 </template>
 
 <style scoped>
-.pui-app {
+.petal-app {
     min-height: 100%;
 }
 </style>
