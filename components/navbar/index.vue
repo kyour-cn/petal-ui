@@ -7,6 +7,13 @@ import PuiIcon from "../icon/index.vue";
 
 const puiStore = usePetalUiStore()
 
+const isMp =
+    // #ifdef MP
+    true
+    // #else
+    false
+    // #endif
+
 const props = defineProps({
     title: {
         type: String,
@@ -115,6 +122,8 @@ const style = computed(() => {
                 />
             </slot>
         </slot>
+        <!--小程序胶囊占位-->
+        <view class="mp-capsule" v-if="isMp"></view>
     </view>
 </template>
 
@@ -156,6 +165,12 @@ const style = computed(() => {
     font-size: 30rpx;
     font-weight: 700;
     line-height: 88rpx;
+}
+
+.mp-capsule {
+    height: 88rpx;
+    /* 一般都不会挨边上，应该填184，这里减去20rpx */
+    width: 164rpx;
 }
 
 </style>
