@@ -1,5 +1,6 @@
 <script setup>
 import PuiLoading from '../loading'
+import PuiEmpty from '../empty'
 import {computed} from 'vue'
 import {usePetalUiStore} from "../../stores/petal-ui";
 
@@ -87,7 +88,13 @@ const onRefresh = () => {
         <template v-for="(item, key) in list" :key="key">
             <slot name="item" :item="item"/>
         </template>
-        <view v-if="props.beforeLoad && loading" :style="{color: puiStore.theme['title']}" class="loading">
+
+        <view v-if="props.finished && !loading && list.length === 0">
+            <slot name="empty">
+                <PuiEmpty />
+            </slot>
+        </view>
+        <view v-else-if="props.beforeLoad && loading" :style="{color: puiStore.theme['title']}" class="loading">
             <PuiLoading/>
             <view>加载中...</view>
         </view>
