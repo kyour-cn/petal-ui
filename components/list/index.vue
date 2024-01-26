@@ -36,7 +36,17 @@ const props = defineProps({
     pullRefresh: {
         type: Boolean,
         default: false
-    }
+    },
+    // 空数据提示文字
+    emptyText: {
+        type: String,
+        default: '暂无数据'
+    },
+    // 加载完成提示文字
+    finishedText: {
+        type: String,
+        default: '没有更多了'
+    },
 })
 
 const emits = defineEmits([
@@ -112,14 +122,18 @@ const scrollToUpper = () => {
 
         <view v-if="props.finished && !loading && list.length === 0">
             <slot name="empty">
-                <PuiEmpty />
+list                <PuiEmpty :description="props.emptyText"/>
             </slot>
         </view>
         <view v-if="loading" :style="{color: puiStore.theme['title']}" class="loading">
             <PuiLoading v-if="pullingTopX === 0"/>
             <view>加载中...</view>
         </view>
-        <view v-else-if="props.finished" :style="{color: puiStore.theme['title']}" class="finished">没有更多了</view>
+        <view
+            v-else-if="props.finished && list.length > 0"
+            :style="{color: puiStore.theme['title']}"
+            class="finished"
+        >{{props.finishedText}}</view>
     </scroll-view>
 </template>
 
