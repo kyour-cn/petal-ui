@@ -2,6 +2,7 @@
 
 import {computed} from "vue";
 import {usePetalUiStore} from "../../stores/petal-ui";
+import {normalizePaddingString} from "../../lib/utils";
 
 const puiStore = usePetalUiStore()
 
@@ -27,7 +28,7 @@ const props = defineProps({
         default: 20
     },
     margin: {
-        type: Number,
+        type: [Number, Array, String],
         default: 20
     },
     _style: {
@@ -42,7 +43,6 @@ const style = computed(() => {
         borderRadius: props.round + 'rpx',
         background: puiStore.theme[props.background] || props.background,
         padding: props.padding + 'rpx',
-        margin: props.margin + 'rpx',
         ...props._style
     }
 
@@ -52,7 +52,9 @@ const style = computed(() => {
     if (props.height >= 0) {
         obj.height = props.height + 'rpx'
     }
-
+    if (props.margin) {
+        obj.margin = normalizePaddingString(props.margin)
+    }
     return obj
 })
 
@@ -66,7 +68,3 @@ const style = computed(() => {
         <slot name="default" />
     </view>
 </template>
-
-<style scoped>
-
-</style>
