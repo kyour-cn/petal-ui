@@ -14,7 +14,7 @@ const props = defineProps({
     },
     src: {
         type: String,
-        default: 'https://developer.harmonyos.com/cn/docs/assets/images/ic_no_result.png'
+        default: 'https://qiniu.kyour.cn/petal-ui/empty-01.svg'
     }
 })
 
