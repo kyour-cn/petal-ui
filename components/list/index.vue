@@ -1,7 +1,7 @@
 <script setup>
 import PuiLoading from '../loading'
 import PuiEmpty from '../empty'
-import {computed} from 'vue'
+import {computed, ref, watch} from 'vue'
 import {usePetalUiStore} from "../../stores/petal-ui";
 
 const puiStore = usePetalUiStore()
@@ -60,14 +60,28 @@ const scrollToLower = () => {
     emits('scrollToLower')
 }
 
-const scrollToUpper = () => {
-    emits('scrollToUpper')
-}
-
 const onRefresh = () => {
     if (props.loading) return;
     emits('refresh')
     loading.value = true
+}
+
+const pullingTopX = ref(0)
+const onPulling = (e) => {
+    pullingTopX.value = Math.floor(e.detail.deltaY)
+}
+watch(loading, (val) => {
+    if (!val) {
+        // pullingTopX.value = 0
+    }
+})
+
+const pullingIconSize = computed(() => {
+    return pullingTopX.value > 100 ? 100 : pullingTopX.value
+})
+
+const scrollToUpper = () => {
+    emits('scrollToUpper')
 }
 
 </script>
@@ -83,19 +97,26 @@ const onRefresh = () => {
         :refresher-background="puiStore.theme['bg-page']"
         @scrolltoupper="scrollToUpper"
         @scrolltolower="scrollToLower"
+        @refresherpulling="onPulling"
+        @refresherabort="pullingTopX = 0"
+        @refresherrestore="pullingTopX = 0"
         @refresherrefresh="onRefresh"
     >
         <template v-for="(item, key) in list" :key="key">
             <slot name="item" :item="item"/>
         </template>
 
+        <view class="pull-loading" style="" v-if="pullingTopX > 0">
+            <PuiLoading :size="pullingIconSize"/>
+        </view>
+
         <view v-if="props.finished && !loading && list.length === 0">
             <slot name="empty">
                 <PuiEmpty />
             </slot>
         </view>
-        <view v-else-if="loading" :style="{color: puiStore.theme['title']}" class="loading">
-            <PuiLoading/>
+        <view v-if="loading" :style="{color: puiStore.theme['title']}" class="loading">
+            <PuiLoading v-if="pullingTopX === 0"/>
             <view>加载中...</view>
         </view>
         <view v-else-if="props.finished" :style="{color: puiStore.theme['title']}" class="finished">没有更多了</view>
@@ -110,6 +131,14 @@ const onRefresh = () => {
     flex-direction: column;
     flex: 1;
     overflow-y: scroll;
+    position: relative;
+}
+
+.pull-loading {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .loading, .finished {
