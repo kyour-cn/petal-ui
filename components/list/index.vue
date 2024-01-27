@@ -122,7 +122,7 @@ const scrollToUpper = () => {
 
         <view v-if="props.finished && !loading && list.length === 0">
             <slot name="empty">
-list                <PuiEmpty :description="props.emptyText"/>
+                <PuiEmpty :description="props.emptyText"/>
             </slot>
         </view>
         <view v-if="loading" :style="{color: puiStore.theme['title']}" class="loading">
