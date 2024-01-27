@@ -1,9 +1,5 @@
 <script setup>
 
-// TODO: 计划任务如下
-// 1. 支持内容插槽
-// 2. 支持内容左右滑动切换
-
 import {computed} from "vue";
 import {usePetalUiStore} from "../../stores/petal-ui";
 
@@ -74,6 +70,9 @@ const style = computed(() => {
                     'tab-item': true,
                     'active': active === key
                 }"
+                :style="{
+                    color: active === key ? puiStore.theme['title'] : puiStore.theme['subtitle']
+                }"
                 @click="onChange(key)"
             >
                 {{item?.[props.key]}}
@@ -92,17 +91,16 @@ const style = computed(() => {
 }
 
 .petal-tabs .tab-item {
+    line-height: 50rpx;
     font-size: 35rpx;
-    margin: 10rpx;
-    padding-bottom: 8rpx;
+    margin: 15rpx 10rpx 0 10rpx;
     white-space: nowrap;
+    transition: font-size 0.2s ease;
 }
 
 .petal-tabs .active {
-    font-size: 50rpx;
-    /*color: #0051ff;
-    border-bottom: 4rpx solid #0051ff;*/
-    padding-bottom: 4rpx;
+    font-size: 45rpx;
+    margin-top: 0;
 }
 
 scroll-view::-webkit-scrollbar {
