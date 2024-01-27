@@ -1,7 +1,7 @@
 <script setup>
 import PuiLoading from '../loading'
 import PuiEmpty from '../empty'
-import {computed, ref, watch} from 'vue'
+import {computed, ref, toRefs, watch} from 'vue'
 import {usePetalUiStore} from "../../stores/petal-ui";
 
 const puiStore = usePetalUiStore()
@@ -80,9 +80,11 @@ const pullingTopX = ref(0)
 const onPulling = (e) => {
     pullingTopX.value = Math.floor(e.detail.deltaY)
 }
-watch(loading, (val) => {
+
+const { pullRefresh } = toRefs(props);
+watch(pullRefresh, (val) => {
     if (!val) {
-        // pullingTopX.value = 0
+        pullingTopX.value = 0
     }
 })
 
@@ -102,7 +104,7 @@ const scrollToUpper = () => {
         :scroll-y="true"
         :refresher-triggered="loading"
         refresher-default-style="none"
-        :refresher-enabled="props.pullRefresh"
+        :refresher-enabled="pullRefresh"
         :lower-threshold="props.offset"
         :refresher-background="puiStore.theme['bg-page']"
         @scrolltoupper="scrollToUpper"
