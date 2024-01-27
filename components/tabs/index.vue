@@ -59,6 +59,7 @@ const style = computed(() => {
 
 <template>
     <scroll-view
+        class="hide-scrollbar"
         :scroll-x="true"
         :show-scrollbar="false"
         :scroll-with-animation="true"
@@ -109,6 +110,12 @@ scroll-view::-webkit-scrollbar {
     width: 0;
     height: 0;
     color: transparent;
+}
+
+.hide-scrollbar ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background-color: transparent;
 }
 
 </style>
