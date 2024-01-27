@@ -41,8 +41,11 @@ nextTick(() => {
         .select(".petal-slider-inner");
     view.fields({
         size: true,
-        scrollOffset: true
+        scrollOffset: true,
+        rect: true
     }, data => {
+
+        startX = data.left
         allWidth.value = data.width
 
         let newValue = value.value
@@ -73,8 +76,13 @@ const value = computed({
 // x轴位置
 const positionX = ref(0)
 
+// 元素位于屏幕开始位置
+let startX = 0
+
 const touchMove = (e) => {
-    let x = e.touches[0].clientX
+
+    // 这里是手指在页面上的坐标，需要减去在页面的偏移量
+    let x = e.touches[0].clientX - startX
     x = x > allWidth.value? allWidth.value : x
     x = x > 0 ? x : 0
 
@@ -116,7 +124,6 @@ const touchEnd = () => {
     height: 20rpx;
     margin: 20rpx;
     background: #ccc;
-    position: relative;
     border-radius: 10rpx;
 }
 
@@ -137,6 +144,7 @@ const touchEnd = () => {
     width: 40rpx;
     height: 40rpx;
     background: #fff;
+    box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.3);
     border-radius: 20rpx;
     position: absolute;
     top: 50%;
