@@ -22,7 +22,7 @@ const props = defineProps({
     // 是否固定在底部
     fixed: {
         type: Boolean,
-        default: false
+        default: true
     },
     // 固定在底部时是否显示占位
     placeholder: {
@@ -85,7 +85,8 @@ const style = computed(() => {
         :style="{
             background: style.bgColor,
             zIndex: props.zIndex,
-            paddingBottom: style.paddingBottom
+            paddingBottom: style.paddingBottom,
+            position: style.position
         }"
     >
         <slot name="default">
@@ -106,7 +107,7 @@ const style = computed(() => {
     height: 120rpx;
     font-weight: 700;
     align-items: center;
-    position: fixed;
+    display: flex;
     bottom: 0;
     z-index: 999;
 }
