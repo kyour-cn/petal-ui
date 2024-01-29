@@ -7,22 +7,26 @@ import PuiIcon from "../icon"
 const puiStore = usePetalUiStore()
 
 const props = defineProps({
+    // 标题
     title: {
         type: String,
         default: 'Title'
     },
+    // 描述信息
     label: {
         type: String,
         default: ''
     },
+    // 值
     value: {
         type: String,
         default: ''
     },
-    isLink: {
+    // 是否必填
+    required: {
         type: Boolean,
         default: false
-    },
+    }
 })
 
 const emits = defineEmits([
@@ -36,9 +40,6 @@ const onClick = () => {
 const style = computed(() => {
 
     let rightIcon = ''
-    if (props.isLink) {
-        rightIcon = 'petal-icon-arrow-right'
-    }
 
     return {
         labelColor: puiStore.theme['label'],
@@ -64,33 +65,39 @@ export default {
         class="petal-form-item"
         @click="onClick"
     >
-        <view class="title">
-            <text v-text="props.title"/>
-            <text
-                v-if="props.label !== ''"
-                class="label"
+        <view class="item-box">
+            <view class="title">
+                <text v-if="props.required" class="required">*</text>
+                <text v-text="props.title"/>
+            </view>
+            <view
+                class="value"
                 :style="{
-                    color: style.labelColor
-                }"
-                v-text="props.label"
+                color: style.valueColor
+            }"
+            >
+                <slot name="value">
+                    <text v-if="props.value !== ''" v-text="props.value"/>
+                </slot>
+            </view>
+            <PuiIcon
+                v-if="style.rightIcon"
+                class="right-icon"
+                :name="style.rightIcon"
+                :color="style.valueColor"
             />
         </view>
         <view
-            class="value"
+            v-if="props.label !== ''"
+            class="label"
             :style="{
-                color: style.valueColor
-            }"
+                    color: style.labelColor
+                }"
         >
-            <slot name="value">
-                <text v-if="props.value !== ''" v-text="props.value"/>
+            <slot name="label">
+                <text v-text="props.label"></text>
             </slot>
         </view>
-        <PuiIcon
-            v-if="style.rightIcon"
-            class="right-icon"
-            :name="style.rightIcon"
-            :color="style.valueColor"
-        />
     </view>
 
 </template>
@@ -98,30 +105,34 @@ export default {
 <style scoped>
 
 .petal-form-item {
-    display: flex;
     padding: 0 20rpx;
+}
 
-    align-items: center;
+.item-box {
+    display: flex;
+    align-items: center
 }
 
 .title {
     padding: 30rpx 0;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex: none;
     font-size: 32rpx;
+    width: 6em;
 }
 
-.label {
-    margin-top: 8rpx;
-    font-size: 24rpx;
+.required {
+    color: red;
 }
 
 .value {
     display: flex;
+    flex: 1;
     font-size: 28rpx;
-    align-items: center;
+    justify-content: right;
+}
+
+.label {
+    padding-bottom: 20rpx;
 }
 
 </style>
