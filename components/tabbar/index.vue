@@ -19,6 +19,12 @@ const props = defineProps({
         type: String,
         default: 'Title'
     },
+    // 是否固定在底部
+    fixed: {
+        type: Boolean,
+        default: false
+    },
+    // 固定在底部时是否显示占位
     placeholder: {
         type: Boolean,
         default: true
@@ -62,7 +68,8 @@ const style = computed(() => {
     return {
         titleColor: puiStore.theme['title'],
         bgColor: puiStore.theme['bg-tabbar'],
-        paddingBottom: puiStore.safeAreaInsets.bottom + 'px'
+        paddingBottom: props.fixed ? puiStore.safeAreaInsets.bottom + 'px' : '0',
+        position: props.fixed ? 'fixed' : 'static'
     }
 })
 
@@ -70,7 +77,7 @@ const style = computed(() => {
 
 <template>
     <view
-        v-if="props.placeholder"
+        v-if="props.fixed && props.placeholder"
         class="petal-tabbar-placeholder"
     />
     <view
@@ -98,7 +105,6 @@ const style = computed(() => {
     width: 100%;
     height: 120rpx;
     font-weight: 700;
-    display: flex;
     align-items: center;
     position: fixed;
     bottom: 0;
