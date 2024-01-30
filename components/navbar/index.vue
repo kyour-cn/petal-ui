@@ -16,17 +16,19 @@ const isMp =
     // #endif
 
 // 获取小程序右上角按钮位置
-let mpBtnRight = 0
-if(isMp) {
-    let mpBtn = uni.getMenuButtonBoundingClientRect()
-    mpBtnRight = puiStore.screenWidth - mpBtn.left
-}
+let mpBtnRight
+// #ifdef MP
+let mpBtn = uni.getMenuButtonBoundingClientRect()
+mpBtnRight = puiStore.screenWidth - mpBtn.left
+// #endif
 
 const props = defineProps({
+    // 标题
     title: {
         type: String,
         default: ''
     },
+    // 是否显示占位符
     placeholder: {
         type: Boolean,
         default: true
@@ -131,7 +133,7 @@ const style = computed(() => {
             </slot>
         </slot>
         <!--小程序胶囊占位-->
-        <view class="mp-capsule" v-if="isMp" :style="{width: mpBtnRight + 'px'}"></view>
+        <view v-if="isMp" class="mp-capsule" :style="{width: mpBtnRight + 'px'}"/>
     </view>
 </template>
 
