@@ -32,7 +32,7 @@ const props = defineProps({
 
 <style scoped>
     .petal-empty {
-        margin: 20rpx;
+        padding: 20rpx;
         display: flex;
         flex-direction: column;
         justify-content: center;
