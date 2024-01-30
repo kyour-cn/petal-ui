@@ -7,12 +7,20 @@ import PuiIcon from "../icon/index.vue";
 
 const puiStore = usePetalUiStore()
 
+// 判断是否是小程序
 const isMp =
     // #ifdef MP
     true
     // #else
     false
     // #endif
+
+// 获取小程序右上角按钮位置
+let mpBtnRight = 0
+if(isMp) {
+    let mpBtn = uni.getMenuButtonBoundingClientRect()
+    mpBtnRight = puiStore.screenWidth - mpBtn.left
+}
 
 const props = defineProps({
     title: {
@@ -123,7 +131,7 @@ const style = computed(() => {
             </slot>
         </slot>
         <!--小程序胶囊占位-->
-        <view class="mp-capsule" v-if="isMp"></view>
+        <view class="mp-capsule" v-if="isMp" :style="{width: mpBtnRight + 'px'}"></view>
     </view>
 </template>
 
@@ -169,8 +177,6 @@ const style = computed(() => {
 
 .mp-capsule {
     height: 88rpx;
-    /* 一般都不会挨边上，应该填184，这里减去20rpx */
-    width: 164rpx;
 }
 
 </style>
