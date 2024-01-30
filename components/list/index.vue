@@ -78,7 +78,7 @@ const onRefresh = () => {
 
 const pullingTopX = ref(0)
 const onPulling = (e) => {
-    pullingTopX.value = Math.floor(e.detail.deltaY)
+    pullingTopX.value = Math.floor(e.detail?.deltaY ? e.detail.deltaY : e.detail.dy)
 }
 
 const { pullRefresh } = toRefs(props);
@@ -146,7 +146,6 @@ const scrollToUpper = () => {
     display: flex;
     flex-direction: column;
     flex: 1;
-    overflow-y: scroll;
     position: relative;
 }
 
