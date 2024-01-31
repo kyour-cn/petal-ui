@@ -79,6 +79,9 @@ const style = computed(() => {
     <view
         v-if="props.fixed && props.placeholder"
         class="petal-tabbar-placeholder"
+        :style="{
+            paddingBottom: style.paddingBottom,
+        }"
     />
     <view
         class="petal-tabbar"
