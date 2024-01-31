@@ -1,12 +1,6 @@
 <script setup>
-
-// TODO: 计划任务如下
-// 1. ✅ isLink属性，用于是否显示右侧箭头
-// 2. 增加icon属性，用于显示左侧icon
-// 3. ✅ 所有内容支持插槽，用于自定义内容
-
-import {computed} from "vue";
-import {usePetalUiStore} from "../../stores/petal-ui";
+import {computed} from "vue"
+import {usePetalUiStore} from "../../stores/petal-ui"
 import PuiIcon from "../icon"
 
 const puiStore = usePetalUiStore()
@@ -28,6 +22,10 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
+    icon: {
+        type: String,
+        default: ''
+    }
 })
 
 const emits = defineEmits([
@@ -71,6 +69,12 @@ export default {
     >
         <slot name="default">
             <view class="title">
+                <PuiIcon
+                    v-if="props.icon"
+                    :name="props.icon"
+                    :size="40"
+                    :_style="{marginRight: '10rpx'}"
+                />
                 <text v-text="props.title"/>
                 <text
                     v-if="props.label !== ''"
@@ -115,8 +119,6 @@ export default {
     padding: 30rpx 0;
     flex: 1;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     font-size: 32rpx;
 }
 
