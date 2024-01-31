@@ -17,6 +17,10 @@ const props = defineProps({
     color: {
         type: String,
         default: 'title'
+    },
+    _style: {
+        type: Object,
+        default: () => ({})
     }
 })
 
@@ -38,7 +42,8 @@ const onClick = () => {
 const style = computed(() => {
     return {
         color: puiStore.theme[props.color] ? puiStore.theme[props.color] : props.color,
-        fontSize: props.size + 'rpx'
+        fontSize: props.size + 'rpx',
+        ...props._style
     }
 })
 
