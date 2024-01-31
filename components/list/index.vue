@@ -37,6 +37,11 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
+    // 加载中提示文字
+    loadingText: {
+        type: String,
+        default: '加载中...'
+    },
     // 空数据提示文字
     emptyText: {
         type: String,
@@ -48,6 +53,14 @@ const props = defineProps({
         default: '没有更多了'
     },
 })
+
+// 判断是否是小程序
+const isMp =
+    // #ifdef MP
+    true
+// #else
+false
+// #endif
 
 const emits = defineEmits([
     'update:loading',
@@ -114,22 +127,28 @@ const scrollToUpper = () => {
         @refresherrestore="pullingTopX = 0"
         @refresherrefresh="onRefresh"
     >
+        <view
+            v-if="pullingTopX > 0"
+            class="pull-loading"
+            :style="{
+                marginTop: isMp ? '-50rpx' : '0'
+            }"
+        >
+            <PuiLoading :size="pullingIconSize"/>
+            <view>{{props.loadingText}}</view>
+        </view>
         <template v-for="(item, key) in list" :key="key">
             <slot name="item" :item="item"/>
         </template>
-
-        <view class="pull-loading" style="" v-if="pullingTopX > 0">
-            <PuiLoading :size="pullingIconSize"/>
-        </view>
 
         <view v-if="props.finished && !loading && list.length === 0">
             <slot name="empty">
                 <PuiEmpty :description="props.emptyText"/>
             </slot>
         </view>
-        <view v-if="loading" :style="{color: puiStore.theme['title']}" class="loading">
-            <PuiLoading v-if="pullingTopX === 0"/>
-            <view>加载中...</view>
+        <view v-if="loading && pullingTopX === 0" :style="{color: puiStore.theme['title']}" class="loading">
+            <PuiLoading/>
+            <view>{{props.loadingText}}</view>
         </view>
         <view
             v-else-if="props.finished && list.length > 0"
@@ -154,6 +173,7 @@ const scrollToUpper = () => {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    text-align: center;
 }
 
 .loading, .finished {
