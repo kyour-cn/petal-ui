@@ -69,33 +69,35 @@ export default {
         :class="{'petal-cell': true, 'clickable': props.isLink}"
         @click="onClick"
     >
-        <view class="title">
-            <text v-text="props.title"/>
-            <text
-                v-if="props.label !== ''"
-                class="label"
+        <slot name="default">
+            <view class="title">
+                <text v-text="props.title"/>
+                <text
+                    v-if="props.label !== ''"
+                    class="label"
+                    :style="{
+                        color: style.labelColor
+                    }"
+                    v-text="props.label"
+                />
+            </view>
+            <view
+                class="value"
                 :style="{
-                    color: style.labelColor
+                    color: style.valueColor
                 }"
-                v-text="props.label"
+            >
+                <slot name="value">
+                    <text v-if="props.value !== ''" v-text="props.value"/>
+                </slot>
+            </view>
+            <PuiIcon
+                v-if="style.rightIcon"
+                class="right-icon"
+                :name="style.rightIcon"
+                :color="style.valueColor"
             />
-        </view>
-        <view
-            class="value"
-            :style="{
-                color: style.valueColor
-            }"
-        >
-            <slot name="value">
-                <text v-if="props.value !== ''" v-text="props.value"/>
-            </slot>
-        </view>
-        <PuiIcon
-            v-if="style.rightIcon"
-            class="right-icon"
-            :name="style.rightIcon"
-            :color="style.valueColor"
-        />
+        </slot>
     </view>
 
 </template>
