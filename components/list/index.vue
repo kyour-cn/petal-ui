@@ -90,12 +90,15 @@ const scrollToLower = () => {
     emits('scrollToLower')
 }
 
+// 下拉刷新
 const onRefresh = () => {
     if (props.loading) return;
     emits('refresh')
+    pullLoading.value = true
     loading.value = true
 }
 
+const pullLoading = ref(false)
 const pullingTopX = ref(0)
 const onPulling = (e) => {
     pullingTopX.value = Math.floor(e.detail?.deltaY ? e.detail.deltaY : e.detail.dy)
@@ -105,6 +108,13 @@ const {pullRefresh} = toRefs(props);
 watch(pullRefresh, (val) => {
     if (!val) {
         pullingTopX.value = 0
+    }
+})
+
+// 监听loading变化，更新下拉刷新状态
+watch(loading, (val) => {
+    if (!val) {
+        pullLoading.value = false
     }
 })
 
@@ -123,6 +133,7 @@ const scrollToUpper = () => {
         class="petal-list"
         :scroll-y="true"
         refresher-default-style="none"
+        :refresher-triggered="pullLoading"
         :refresher-enabled="pullRefresh"
         :lower-threshold="props.offset"
         :refresher-background="puiStore.theme['bg-page']"
@@ -143,7 +154,7 @@ const scrollToUpper = () => {
             }"
         >
             <PuiLoading :size="pullingIconSize"/>
-            <view>{{props.loadingText}}</view>
+            <view v-if="loading">{{props.loadingText}}</view>
         </view>
 
         <!-- 列表显示内容 -->
