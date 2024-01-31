@@ -75,8 +75,15 @@ const loading = computed({
     set: (value) => emits('update:loading', value)
 })
 
+let timerToLower = null
 const scrollToLower = () => {
-    if (props.beforeLoad && !props.finished && !props.loading) {
+    if (timerToLower == null && props.beforeLoad && !props.finished && !props.loading) {
+
+        // 避免多次触发
+        timerToLower = setTimeout(() => {
+            timerToLower = null
+        }, 100)
+
         loading.value = true
         emits('load')
     }
@@ -94,7 +101,7 @@ const onPulling = (e) => {
     pullingTopX.value = Math.floor(e.detail?.deltaY ? e.detail.deltaY : e.detail.dy)
 }
 
-const { pullRefresh } = toRefs(props);
+const {pullRefresh} = toRefs(props);
 watch(pullRefresh, (val) => {
     if (!val) {
         pullingTopX.value = 0
@@ -115,7 +122,6 @@ const scrollToUpper = () => {
     <scroll-view
         class="petal-list"
         :scroll-y="true"
-        :refresher-triggered="loading"
         refresher-default-style="none"
         :refresher-enabled="pullRefresh"
         :lower-threshold="props.offset"
@@ -127,34 +133,49 @@ const scrollToUpper = () => {
         @refresherrestore="pullingTopX = 0"
         @refresherrefresh="onRefresh"
     >
+        <!-- 顶部下拉刷新提示 -->
         <view
             v-if="pullingTopX > 0"
             class="pull-loading"
             :style="{
+                color: puiStore.theme['subtitle'],
                 marginTop: isMp ? '-50rpx' : '0'
             }"
         >
             <PuiLoading :size="pullingIconSize"/>
             <view>{{props.loadingText}}</view>
         </view>
-        <template v-for="(item, key) in list" :key="key">
-            <slot name="item" :item="item"/>
-        </template>
 
+        <!-- 列表显示内容 -->
+        <slot name="default">
+            <template v-for="(item, key) in list" :key="key">
+                <slot name="item" :item="item"/>
+            </template>
+        </slot>
+
+        <!-- 空数据提示 -->
         <view v-if="props.finished && !loading && list.length === 0">
             <slot name="empty">
                 <PuiEmpty :description="props.emptyText"/>
             </slot>
         </view>
-        <view v-if="loading && pullingTopX === 0" :style="{color: puiStore.theme['title']}" class="loading">
-            <PuiLoading/>
-            <view>{{props.loadingText}}</view>
-        </view>
+
+        <!-- 加载完成提示 -->
         <view
             v-else-if="props.finished && list.length > 0"
             :style="{color: puiStore.theme['title']}"
             class="finished"
         >{{props.finishedText}}</view>
+
+        <!-- 底部加载提示 -->
+        <view
+            v-if="!props.finished && pullingTopX === 0"
+            :style="{color: puiStore.theme['subtitle']}"
+            class="loading"
+        >
+            <PuiLoading/>
+            <view>{{props.loadingText}}</view>
+        </view>
     </scroll-view>
 </template>
 
