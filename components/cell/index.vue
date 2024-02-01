@@ -110,8 +110,8 @@ export default {
 
 .petal-cell {
     display: flex;
-    padding: 0 20rpx;
-
+    padding: 0 10rpx;
+    margin: 0 10rpx;
     align-items: center;
 }
 
