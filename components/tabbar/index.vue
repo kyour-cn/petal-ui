@@ -31,7 +31,7 @@ const props = defineProps({
     },
     zIndex: {
         type: Number,
-        default: 99
+        default: 999
     },
 })
 
@@ -112,7 +112,6 @@ const style = computed(() => {
     align-items: center;
     display: flex;
     bottom: 0;
-    z-index: 999;
 }
 
 </style>

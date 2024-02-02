@@ -7,7 +7,7 @@ const props = defineProps({
     },
     zIndex: {
         type: Number,
-        default: 100
+        default: 1000
     },
     background: {
         type: String,

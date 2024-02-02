@@ -35,7 +35,7 @@ const props = defineProps({
     },
     zIndex: {
         type: Number,
-        default: 99
+        default: 999
     },
     // 左侧返回箭头
     leftArrow: {
