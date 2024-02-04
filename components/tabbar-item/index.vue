@@ -53,7 +53,7 @@ const style = computed(() => {
     return {
         titleColor: isActive.value ? puiStore.theme['primary'] : puiStore.theme['title'],
         bgColor: puiStore.theme['bg-body'],
-        paddingBottom: puiStore.safeAreaInsets.bottom + 'px',
+        paddingBottom: puiStore.windowInfo.safeAreaInsets.bottom + 'px',
         icon: isActive.value ? activeIcon : props.icon
     }
 })

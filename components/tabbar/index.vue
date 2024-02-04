@@ -68,7 +68,7 @@ const style = computed(() => {
     return {
         titleColor: puiStore.theme['title'],
         bgColor: puiStore.theme['bg-tabbar'],
-        paddingBottom: props.fixed ? puiStore.safeAreaInsets.bottom + 'px' : '0',
+        paddingBottom: props.fixed ? puiStore.windowInfo.safeAreaInsets.bottom + 'px' : '0',
         position: props.fixed ? 'fixed' : 'static'
     }
 })

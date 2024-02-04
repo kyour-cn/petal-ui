@@ -19,7 +19,7 @@ const isMp =
 let mpBtnRight
 // #ifdef MP
 let mpBtn = uni.getMenuButtonBoundingClientRect()
-mpBtnRight = puiStore.screenWidth - mpBtn.left
+mpBtnRight = puiStore.windowInfo.screenWidth - mpBtn.left
 // #endif
 
 const props = defineProps({
@@ -83,7 +83,7 @@ const style = computed(() => {
     return {
         titleColor: puiStore.theme['title'],
         bgColor: puiStore.theme['bg-page'],
-        paddingTop: puiStore.safeAreaInsets.top + 'px',
+        paddingTop: puiStore.windowInfo.safeAreaInsets.top + 'px',
         leftIcon
     }
 })

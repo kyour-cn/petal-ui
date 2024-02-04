@@ -68,7 +68,7 @@ watch(value, () => {
 // 动画位移
 let offset = ref(value.value ? 0 : -props.height)
 
-let officeStep = Math.floor((puiStore.screenHeight - (puiStore.screenHeight - props.height)) / 40)
+let officeStep = Math.floor((puiStore.windowInfo.screenHeight - (puiStore.windowInfo.screenHeight - props.height)) / 40)
 
 // 移入移出位移动画
 const move = () => {
@@ -140,14 +140,14 @@ const style = computed(() => {
             obj.borderRadius = '0 0 40rpx 40rpx'
             padding[0] = 0
             // 适配安全区域
-            obj.paddingTop = px2Rpx(puiStore.safeAreaInsets.top, puiStore.screenWidth) + padding[0] + 'rpx'
+            obj.paddingTop = px2Rpx(puiStore.windowInfo.safeAreaInsets.top, puiStore.windowInfo.screenWidth) + padding[0] + 'rpx'
             break;
         case 'bottom':
             obj.bottom = offset.value + 'rpx'
             obj.borderRadius = '40rpx 40rpx 0 0'
             padding[2] = 0
             // 适配安全区域
-            obj.paddingBottom = px2Rpx(puiStore.safeAreaInsets.bottom, puiStore.screenWidth) + padding[2] + 'rpx'
+            obj.paddingBottom = px2Rpx(puiStore.windowInfo.safeAreaInsets.bottom, puiStore.windowInfo.screenWidth) + padding[2] + 'rpx'
             break;
         case 'center':
         default:
