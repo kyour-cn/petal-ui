@@ -64,9 +64,8 @@ const toggle = () => {
     background: #007aff;
     border: 1px solid #007aff;
 }
-
 .petal-checkbox-disabled {
-    background: #ddd;
-    border: 1px solid #ccc;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 </style>

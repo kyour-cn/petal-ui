@@ -1,5 +1,4 @@
 <script setup>
-import PuiIcon from '../icon/index.vue'
 import {usePetalUiStore} from "../../stores/petal-ui";
 import {computed} from "vue";
 
@@ -26,7 +25,7 @@ const toggle = () => {
     if (props.disabled) {
         return
     }
-    value.value = !value.value;
+    value.value = true;
 }
 </script>
 
@@ -64,10 +63,9 @@ const toggle = () => {
     background: #007aff;
     border: 1px solid #007aff;
 }
-
 .petal-radio-disabled {
-    background: #ddd;
-    border: 1px solid #ccc;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 .petal-radio-inner {
     width: 20rpx;
