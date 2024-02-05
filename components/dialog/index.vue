@@ -1,39 +1,32 @@
 <script setup>
 
+import PuiButton from "../button/index.vue";
 import {computed, nextTick, ref, watch} from "vue";
 import {usePetalUiStore} from "../../stores/petal-ui";
 
 const puiStore = usePetalUiStore()
 
 const props = defineProps({
+    // 是否显示弹出层(双向绑定)
     show: {
         type: Boolean,
         default: false
     },
+    // 弹出层标题
     title: {
         type: String,
         default: '提示'
     },
+    // 弹出层内容
     content: {
         type: String,
-        default: '提示内容'
+        default: ''
     },
-    // confirmText: {
-    //     type: String,
-    //     default: '确定'
-    // },
-    // cancelText: {
-    //     type: String,
-    //     default: '取消'
-    // },
-    // confirmColor: {
-    //     type: String,
-    //     default: '#007AFF'
-    // },
-    // cancelColor: {
-    //     type: String,
-    //     default: '#999999'
-    // },
+    // 弹出层操作按钮
+    actions: {
+        type: Array,
+        default: () => []
+    },
     // 点击遮罩层是否关闭弹出层
     closeOnClickOverlay: {
         type: Boolean,
@@ -44,7 +37,9 @@ const props = defineProps({
 const emits = defineEmits([
     'update:show',
     // 点击遮罩层
-    'clickOverlay'
+    'clickOverlay',
+    // 点击操作按钮
+    'action'
 ])
 
 const show = computed({
@@ -91,6 +86,36 @@ const onChangeShow = (value) => {
     })
 }
 
+// 操作按钮
+const actionBtn = computed(() => {
+    // 默认按钮样式
+    const defaultBtn = {
+        color: puiStore.theme.primary,
+        background: 'transparent'
+    }
+
+    const buttons = [];
+    for(let i in props.actions) {
+        const item = props.actions[i]
+        if(typeof item === 'string') {
+            buttons.push({
+                text: item,
+                ...defaultBtn,
+            })
+        } else {
+            buttons.push({
+                ...defaultBtn,
+                ...item
+            })
+        }
+    }
+    return buttons
+})
+
+const onClickAction = (index, action) => {
+    emits('action', index, action)
+}
+
 // 监听show变化
 watch(show, onChangeShow)
 
@@ -132,15 +157,28 @@ nextTick(() => {
             <slot name="default">
                 <view>{{ props.content }}</view>
             </slot>
+            <!-- action slot -->
+            <slot name="action">
+                <view
+                    v-if="actionBtn.length"
+                    class="petal-dialog-action"
+                >
+                    <view
+                        :class="['petal-dialog-btn', {'petal-dialog-btn-line': index < actionBtn.length - 1}]"
+                        v-for="(item, index) in actionBtn"
+                        :key="index"
+                        :style="item?.style"
+                    >
+                        <PuiButton
+                            block
+                            :color="item.color"
+                            :background="item.background"
+                            @click="onClickAction(index, item)"
+                        >{{item.text}}</PuiButton>
+                    </view>
+                </view>
+            </slot>
         </view>
-        <!-- action slot -->
-        <slot name="action">
-            <view
-                class="petal-dialog-action"
-            >
-                <!-- TODO: action button -->
-            </view>
-        </slot>
     </view>
 </template>
 
@@ -174,6 +212,21 @@ nextTick(() => {
     padding: 30rpx;
     margin: 20rpx;
     border-radius: 40rpx;
+}
+
+.petal-dialog-action {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20rpx;
+}
+
+.petal-dialog-btn {
+    flex: 1;
+    padding: 0 10rpx;
+}
+.petal-dialog-btn-line {
+    border-right: 1px solid #e5e5e5;
+
 }
 
 </style>
