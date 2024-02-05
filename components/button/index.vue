@@ -37,6 +37,10 @@ const props = defineProps({
         type: String,
         default: ''
     },
+    fontWeight: {
+        type: String,
+        default: 'bold'
+    },
     size: {
         type: String,
         default: 'normal'
@@ -52,6 +56,10 @@ const props = defineProps({
     disabled: {
         type: Boolean,
         default: false
+    },
+    _style: {
+        type: Object,
+        default: () => ({})
     }
 })
 
@@ -94,9 +102,7 @@ const sizeObj = computed(() => {
 let isHover = ref(false);
 
 const classList = computed(() => {
-    const list = [
-        'petal-btn'
-    ]
+    const list = ['petal-btn']
 
     if (isHover.value) {
         list.push('petal-btn-hover')
@@ -116,6 +122,11 @@ const style = computed(() => {
         color = puiStore.theme[color]
     }
 
+    // 适配原色背景点击效果
+    if (isHover.value && props.background === 'transparent') {
+        background = 'rgba(0, 0, 0, 0.1)'
+    }
+
     return {
         color: color,
         background: background,
@@ -125,8 +136,9 @@ const style = computed(() => {
         height: sizeObj.value.h,
         width: sizeObj.value.w,
         lineHeight: sizeObj.value.h,
-        fontWeight: 700,
+        fontWeight: props.fontWeight,
         display: props.block ? 'block' : 'inline-block',
+        ...props._style
     }
 })
 
