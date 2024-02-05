@@ -125,7 +125,8 @@ const style = computed(() => {
             marginBottom: puiStore.windowInfo.safeAreaInsets.bottom + 'px',
         },
         content: {
-            background: puiStore.theme['bg-body']
+            background: puiStore.theme['bg-body'],
+            color: puiStore.theme['title']
         }
     }
 })
@@ -151,11 +152,15 @@ nextTick(() => {
             class="petal-dialog-content"
             :style="style.content"
         >
-            <view v-if="props.title" class="petal-dialog-title">
+            <view
+                v-if="props.title"
+                class="petal-dialog-title"
+            >
                 <text>{{ props.title }}</text>
             </view>
             <slot name="default">
-                <view>{{ props.content }}</view>
+                <view
+                >{{ props.content }}</view>
             </slot>
             <!-- action slot -->
             <slot name="action">
@@ -164,7 +169,11 @@ nextTick(() => {
                     class="petal-dialog-action"
                 >
                     <view
-                        :class="['petal-dialog-btn', {'petal-dialog-btn-line': index < actionBtn.length - 1}]"
+                        :class="[
+                            'petal-dialog-btn',
+                            {'petal-dialog-btn-line': !puiStore.dark && index < actionBtn.length - 1},
+                            {'petal-dialog-btn-line-dark': puiStore.dark && index < actionBtn.length - 1}
+                        ]"
                         v-for="(item, index) in actionBtn"
                         :key="index"
                         :style="item?.style"
@@ -225,8 +234,10 @@ nextTick(() => {
     padding: 0 10rpx;
 }
 .petal-dialog-btn-line {
-    border-right: 1px solid #e5e5e5;
-
+    border-right: 1px solid #CECECE;
+}
+.petal-dialog-btn-line-dark {
+    border-right: 1px solid #4C4D4F;
 }
 
 </style>
