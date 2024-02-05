@@ -118,7 +118,12 @@ export default {
         @click="onClick"
     >
         <view class="item-box">
-            <view class="title">
+            <view
+                class="title"
+                :style="{
+                    paddingLeft: props.required ? '0' : '8px'
+                }"
+            >
                 <text v-if="props.required" class="required">*</text>
                 <text v-text="props.title"/>
             </view>
