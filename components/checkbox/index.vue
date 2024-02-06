@@ -28,6 +28,15 @@ const toggle = () => {
     }
     value.value = !value.value;
 }
+
+const style = computed(() => {
+    const obj = {}
+    if(value.value) {
+        obj.background = puiStore.theme.primary
+        obj.border = '1px solid '+puiStore.theme.primary
+    }
+    return obj
+})
 </script>
 
 <template>
@@ -35,10 +44,10 @@ const toggle = () => {
         :class="{
             'petal-checkbox': true,
             'petal-checkbox-dark': puiStore.dark,
-            'petal-checkbox-checked': value,
             'petal-checkbox-disabled': disabled
         }"
         @click="toggle"
+        :style="style"
     >
         <PuiIcon v-if="modelValue" name="petal-icon-ok-filled" color="#fff"/>
     </view>
@@ -59,11 +68,6 @@ const toggle = () => {
     &-dark {
         background: none;
         border: 1px solid #666;
-    }
-
-    &-checked {
-        background: #007aff;
-        border: 1px solid #007aff;
     }
 
     &-disabled {

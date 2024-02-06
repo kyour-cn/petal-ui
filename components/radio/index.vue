@@ -27,6 +27,15 @@ const toggle = () => {
     }
     value.value = true;
 }
+
+const style = computed(() => {
+    const obj = {}
+    if(value.value) {
+        obj.background = puiStore.theme.primary
+        obj.border = '1px solid '+puiStore.theme.primary
+    }
+    return obj
+})
 </script>
 
 <template>
@@ -34,10 +43,10 @@ const toggle = () => {
         :class="{
             'petal-radio': true,
             'petal-radio-dark': puiStore.dark,
-            'petal-radio-checked': value,
             'petal-radio-disabled': disabled
         }"
         @click="toggle"
+        :style="style"
     >
         <view v-if="modelValue" class="petal-radio-inner"></view>
     </view>
@@ -59,14 +68,12 @@ const toggle = () => {
         background: none;
         border: 1px solid #666;
     }
-    &-checked {
-        background: #007aff;
-        border: 1px solid #007aff;
-    }
+
     &-disabled {
         opacity: 0.5;
         cursor: not-allowed;
     }
+
     &-inner {
         width: 20rpx;
         height: 20rpx;
