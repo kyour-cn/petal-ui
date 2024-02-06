@@ -97,7 +97,7 @@ const style = computed(() => {
     </view>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-search {
     border-radius: 50rpx;
@@ -106,17 +106,18 @@ const style = computed(() => {
     box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: row;
+
+    .search-icon,.petal-search-btn {
+        margin-left: 10rpx;
+        display: flex;
+        align-items: center;
+    }
+
+    &-input {
+        flex: 1;
+        display: flex;
+        padding: 10rpx;
+    }
 }
 
-.search-icon,.petal-search-btn {
-    margin-left: 10rpx;
-    display: flex;
-    align-items: center;
-}
-
-.petal-search-input {
-    flex: 1;
-    display: flex;
-    padding: 10rpx;
-}
 </style>

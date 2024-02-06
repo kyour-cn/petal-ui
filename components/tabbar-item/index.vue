@@ -87,7 +87,7 @@ export default {
     </view>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-tabbar-item {
     display: flex;
@@ -95,21 +95,19 @@ export default {
     flex: 1;
     flex-direction: column;
     padding: 20rpx 0;
-}
 
-/* 按下样式 */
-.petal-tabbar-item:active {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 20rpx;
-    opacity: 0.7;
-}
-
-.icon {
-    padding-bottom: 5rpx;
-}
-
-.name {
-    font-size: 22rpx;
+    /* 按下样式 */
+    &:active {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 20rpx;
+        opacity: 0.7;
+    }
+    .icon {
+        padding-bottom: 5rpx;
+    }
+    .name {
+        font-size: 22rpx;
+    }
 }
 
 </style>

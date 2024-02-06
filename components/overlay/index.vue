@@ -34,7 +34,7 @@ const props = defineProps({
     </view>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-overlay {
     position: fixed;
@@ -43,8 +43,9 @@ const props = defineProps({
     left: 0;
     width: 100%;
     height: 100%;
-}
-.petal-overlay-content {
-    margin: auto;
+
+    &-content {
+        margin: auto;
+    }
 }
 </style>

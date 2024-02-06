@@ -98,6 +98,7 @@ const style = computed(() => {
             paddingTop: style.paddingTop
         }"
     />
+    <!-- 暗黑模式状态栏背景 -->
     <view
         v-if="props.darkBg && puiStore.dark"
         class="petal-navbar-bar"
@@ -151,11 +152,17 @@ const style = computed(() => {
     </view>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-navbar-placeholder {
     height: 88rpx;
     width: 100%;
+}
+
+.petal-navbar-bar {
+    position: fixed;
+    width: 100%;
+    top: 0;
 }
 
 .petal-navbar {
@@ -165,39 +172,33 @@ const style = computed(() => {
     display: flex;
     width: 100%;
     align-items: center;
-}
 
-.petal-navbar-bar {
-    position: fixed;
-    width: 100%;
-    top: 0;
-}
+    .left-icon {
+        margin-left: 20rpx;
+    }
 
-.left-icon {
-    margin-left: 20rpx;
-}
+    .right-icon {
+        margin-left: auto;
+        margin-right: 20rpx;
+    }
 
-.right-icon {
-    margin-left: auto;
-    margin-right: 20rpx;
-}
+    .left-icon:active {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 20rpx;
+        opacity: 0.7;
+    }
 
-.left-icon:active {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 20rpx;
-    opacity: 0.7;
-}
+    .title {
+        padding-left: 20rpx;
+        flex: 1;
+        font-size: 30rpx;
+        font-weight: 700;
+        line-height: 88rpx;
+    }
 
-.petal-navbar .title {
-    padding-left: 20rpx;
-    flex: 1;
-    font-size: 30rpx;
-    font-weight: 700;
-    line-height: 88rpx;
-}
-
-.mp-capsule {
-    height: 88rpx;
+    .mp-capsule {
+        height: 88rpx;
+    }
 }
 
 </style>

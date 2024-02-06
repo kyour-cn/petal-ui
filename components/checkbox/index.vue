@@ -45,7 +45,7 @@ const toggle = () => {
 
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-checkbox {
     width: 40rpx;
@@ -55,17 +55,20 @@ const toggle = () => {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.petal-checkbox-dark {
-    background: none;
-    border: 1px solid #666;
-}
-.petal-checkbox-checked {
-    background: #007aff;
-    border: 1px solid #007aff;
-}
-.petal-checkbox-disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+
+    &-dark {
+        background: none;
+        border: 1px solid #666;
+    }
+
+    &-checked {
+        background: #007aff;
+        border: 1px solid #007aff;
+    }
+
+    &-disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
 }
 </style>

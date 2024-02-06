@@ -191,7 +191,7 @@ nextTick(() => {
     </view>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-dialog-overlay {
     position: fixed;
@@ -208,36 +208,33 @@ nextTick(() => {
     width: 100%;
     z-index: 1001;
     transform: translateY(100%);
-}
 
-.petal-dialog-title {
-    padding-bottom: 20rpx;
-    font-size: 40rpx;
-    font-weight: bold;
-}
-
-.petal-dialog-content {
-    background: white;
-    padding: 30rpx;
-    margin: 20rpx;
-    border-radius: 40rpx;
-}
-
-.petal-dialog-action {
-    display: flex;
-    flex-direction: row;
-    margin-top: 20rpx;
-}
-
-.petal-dialog-btn {
-    flex: 1;
-    padding: 0 10rpx;
-}
-.petal-dialog-btn-line {
-    border-right: 1px solid #CECECE;
-}
-.petal-dialog-btn-line-dark {
-    border-right: 1px solid #4C4D4F;
+    &-title {
+        padding-bottom: 20rpx;
+        font-size: 40rpx;
+        font-weight: bold;
+    }
+    &-content {
+        background: white;
+        padding: 30rpx;
+        margin: 20rpx;
+        border-radius: 40rpx;
+    }
+    &-action {
+        display: flex;
+        flex-direction: row;
+        margin-top: 20rpx;
+    }
+    &-btn {
+        flex: 1;
+        padding: 0 10rpx;
+    }
+    &-btn-line {
+        border-right: 1px solid #CECECE;
+    }
+    &-btn-line-dark {
+        border-right: 1px solid #4C4D4F;
+    }
 }
 
 </style>

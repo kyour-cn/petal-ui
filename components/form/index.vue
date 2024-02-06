@@ -37,38 +37,40 @@ export default {
     </view>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-form {
     padding: 10rpx 0;
     margin: 20rpx;
     border-radius: 30rpx;
-}
 
-.petal-form :deep(.petal-form-item:not(:last-child)) {
-    position: relative;
-}
 
-.petal-form :deep(.petal-form-item:not(:last-child)::after) {
-    position: absolute;
-    box-sizing: border-box;
-    content: " ";
-    pointer-events: none;
-    right: 20rpx;
-    bottom: 0;
-    left: 20rpx;
-    border-bottom: 1px solid #E8E8E8;
-}
+    :deep(.petal-form-item:not(:last-child)) {
+        position: relative;
+    }
 
-.petal-form-dark :deep(.petal-form-item:not(:last-child)::after) {
-    position: absolute;
-    box-sizing: border-box;
-    content: " ";
-    pointer-events: none;
-    right: 20rpx;
-    bottom: 0;
-    left: 20rpx;
-    border-bottom: 1px solid #4C4D4F;
+    :deep(.petal-form-item:not(:last-child)::after) {
+        position: absolute;
+        box-sizing: border-box;
+        content: " ";
+        pointer-events: none;
+        right: 20rpx;
+        bottom: 0;
+        left: 20rpx;
+        border-bottom: 1px solid #E8E8E8;
+    }
+
+    &-dark :deep(.petal-form-item:not(:last-child)::after) {
+        position: absolute;
+        box-sizing: border-box;
+        content: " ";
+        pointer-events: none;
+        right: 20rpx;
+        bottom: 0;
+        left: 20rpx;
+        border-bottom: 1px solid #4C4D4F;
+    }
+
 }
 
 </style>

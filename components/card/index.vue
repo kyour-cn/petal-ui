@@ -62,7 +62,6 @@ const style = computed(() => {
 
 <template>
     <view
-        class="petal-card"
         :style="style"
     >
         <slot name="default" />

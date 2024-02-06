@@ -66,7 +66,7 @@ export default {
 
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-sidebar-item {
     min-height: 80rpx;
@@ -74,27 +74,27 @@ export default {
     background: white;
     display: flex;
     align-items: center;
-}
 
-.petal-sidebar-item:before {
-    content: '';
-    width: 6rpx;
-    height: 40rpx;
-}
+    &:before {
+        content: '';
+        width: 6rpx;
+        height: 40rpx;
+    }
 
 
-.petal-sidebar-item-active:before {
-    background: #2550F7;
-}
+    &-active:before {
+        background: #2550F7;
+    }
 
-.petal-sidebar-title {
-    flex: 1;
-    text-align: center;
-    font-size: 28rpx;
-}
+    .petal-sidebar-title {
+        flex: 1;
+        text-align: center;
+        font-size: 28rpx;
+    }
 
-.petal-sidebar-item-active .petal-sidebar-title {
-    font-weight: bold;
+    &-active .petal-sidebar-title {
+        font-weight: bold;
+    }
 }
 
 </style>

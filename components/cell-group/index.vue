@@ -37,38 +37,38 @@ export default {
     </view>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-cell-group {
     padding: 10rpx 0;
     margin: 20rpx;
     border-radius: 30rpx;
-}
 
-.petal-cell-group :deep(.petal-cell:not(:last-child)) {
-    position: relative;
-}
+    :deep(.petal-cell:not(:last-child)) {
+        position: relative;
+    }
 
-.petal-cell-group :deep(.petal-cell:not(:last-child)::after) {
-    position: absolute;
-    box-sizing: border-box;
-    content: " ";
-    pointer-events: none;
-    right: 20rpx;
-    bottom: 0;
-    left: 20rpx;
-    border-bottom: 1px solid #E8E8E8;
-}
+    :deep(.petal-cell:not(:last-child)::after) {
+        position: absolute;
+        box-sizing: border-box;
+        content: " ";
+        pointer-events: none;
+        right: 20rpx;
+        bottom: 0;
+        left: 20rpx;
+        border-bottom: 1px solid #E8E8E8;
+    }
 
-.petal-cell-group-dark :deep(.petal-cell:not(:last-child)::after) {
-    position: absolute;
-    box-sizing: border-box;
-    content: " ";
-    pointer-events: none;
-    right: 20rpx;
-    bottom: 0;
-    left: 20rpx;
-    border-bottom: 1px solid #4C4D4F;
+    &-dark :deep(.petal-cell:not(:last-child)::after) {
+        position: absolute;
+        box-sizing: border-box;
+        content: " ";
+        pointer-events: none;
+        right: 20rpx;
+        bottom: 0;
+        left: 20rpx;
+        border-bottom: 1px solid #4C4D4F;
+    }
 }
 
 </style>

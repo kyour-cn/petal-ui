@@ -190,7 +190,7 @@ const overlayStyle = computed(() => {
     </view>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .petal-popup-overlay {
     position: fixed;
     left: 0;
@@ -204,10 +204,11 @@ const overlayStyle = computed(() => {
     position: fixed;
     width: 100%;
     overflow-y: scroll;
+
+    .popup-body {
+        padding: 20rpx;
+    }
 }
 
-.popup-body {
-    padding: 20rpx;
-}
 
 </style>

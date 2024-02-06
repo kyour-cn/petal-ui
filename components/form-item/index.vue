@@ -70,7 +70,7 @@ const validate = () => {
 }
 // 验证错误信息
 const validateErrMsg = computed(() => {
-    if(!validateState.value) return false
+    if (!validateState.value) return false
     if (props.required && value.value === props.empty) return '内容不能为空'
     if (props.rules.length === 0) return false
 
@@ -121,7 +121,7 @@ export default {
             <view
                 class="title"
                 :style="{
-                    paddingLeft: props.required ? '0' : '8px'
+                    paddingLeft: props.required ? '0' : '7px'
                 }"
             >
                 <text v-if="props.required" class="required">*</text>
@@ -130,8 +130,8 @@ export default {
             <view
                 class="value"
                 :style="{
-                color: style.valueColor
-            }"
+                    color: style.valueColor
+                }"
             >
                 <slot name="value">
                     <input
@@ -156,62 +156,62 @@ export default {
             v-if="props.label !== ''"
             class="label"
             :style="{
-                    color: style.labelColor
-                }"
+                color: style.labelColor
+            }"
         >
             <slot name="label">
                 <text v-text="props.label"></text>
             </slot>
         </view>
         <view v-if="validateErrMsg" class="error">
-            <text>{{validateErrMsg}}</text>
+            <text>{{ validateErrMsg }}</text>
         </view>
     </view>
 
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-form-item {
     padding: 0 20rpx;
-}
+    .item-box {
+        display: flex;
+        align-items: center
+    }
 
-.item-box {
-    display: flex;
-    align-items: center
-}
+    .title {
+        padding: 30rpx 0;
+        flex: none;
+        font-size: 32rpx;
+        width: 6em;
+    }
 
-.title {
-    padding: 30rpx 0;
-    flex: none;
-    font-size: 32rpx;
-    width: 6em;
-}
+    .required {
+        color: red;
+    }
 
-.required {
-    color: red;
-}
+    .value {
+        display: flex;
+        flex: 1;
+        font-size: 28rpx;
+        justify-content: right;
+    }
 
-.value {
-    display: flex;
-    flex: 1;
-    font-size: 28rpx;
-    justify-content: right;
-}
+    .value .value-input {
+        flex: 1;
+    }
 
-.value .value-input {
-    flex: 1;
-}
+    .label {
+        padding-bottom: 20rpx;
+        margin-left: 15rpx;
+    }
 
-.label {
-    padding-bottom: 20rpx;
-}
-
-.error {
-    padding-bottom: 20rpx;
-    color: red;
-    margin-left: 6em;
-    margin-top: -20rpx;
+    .error {
+        padding-bottom: 20rpx;
+        color: red;
+        margin-left: 6em;
+        margin-top: -20rpx;
+    }
 }
 
 </style>

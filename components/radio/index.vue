@@ -54,24 +54,25 @@ const toggle = () => {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.petal-radio-dark {
-    background: none;
-    border: 1px solid #666;
-}
-.petal-radio-checked {
-    background: #007aff;
-    border: 1px solid #007aff;
-}
-.petal-radio-disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-.petal-radio-inner {
-    width: 20rpx;
-    height: 20rpx;
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+
+    &-dark {
+        background: none;
+        border: 1px solid #666;
+    }
+    &-checked {
+        background: #007aff;
+        border: 1px solid #007aff;
+    }
+    &-disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    &-inner {
+        width: 20rpx;
+        height: 20rpx;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
 }
 </style>

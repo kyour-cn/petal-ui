@@ -30,7 +30,7 @@ const tabId = 'tabs_' + Math.floor(Math.random() * 10000)
 
 // 滚动到指定位置
 const showIntoId = computed(() => {
-    return tabId + (active.value -1)
+    return tabId + (active.value - 1)
 })
 
 const onChange = (key) => {
@@ -75,39 +75,31 @@ const style = computed(() => {
                 }"
                 @click="onChange(key)"
             >
-                {{item?.[props.key]}}
+                {{ item?.[props.key] }}
             </view>
         </view>
     </scroll-view>
 
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-tabs {
     display: flex;
     flex-direction: row;
     align-items: center;
-}
 
-.petal-tabs .tab-item {
-    line-height: 50rpx;
-    font-size: 35rpx;
-    margin: 15rpx 10rpx 0 10rpx;
-    white-space: nowrap;
-    transition: font-size 0.2s ease;
-}
-
-.petal-tabs .active {
-    font-size: 45rpx;
-    margin-top: 0;
-}
-
-scroll-view::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
-    color: transparent;
+    .tab-item {
+        line-height: 50rpx;
+        font-size: 35rpx;
+        margin: 15rpx 10rpx 0 10rpx;
+        white-space: nowrap;
+        transition: font-size 0.2s ease;
+    }
+    .active {
+        font-size: 45rpx;
+        margin-top: 0;
+    }
 }
 
 .hide-scrollbar ::-webkit-scrollbar {
@@ -115,5 +107,4 @@ scroll-view::-webkit-scrollbar {
     height: 0;
     background-color: transparent;
 }
-
 </style>

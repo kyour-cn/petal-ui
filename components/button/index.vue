@@ -159,19 +159,17 @@ const style = computed(() => {
     </view>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-btn {
     text-align: center;
-}
-
-.petal-btn-hover {
-    opacity: 0.7;
-}
-
-.petal-btn-disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
+    &-hover {
+        opacity: 0.7;
+    }
+    &-disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
 }
 
 </style>

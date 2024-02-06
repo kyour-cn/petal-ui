@@ -64,7 +64,7 @@ export default {
 <template>
 
     <view
-        :class="{'petal-cell': true, 'clickable': props.isLink}"
+        :class="{'petal-cell': true, 'petal-cell-clickable': props.isLink}"
         @click="onClick"
     >
         <slot name="default">
@@ -106,37 +106,37 @@ export default {
 
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-cell {
     display: flex;
     padding: 0 10rpx;
     margin: 0 10rpx;
     align-items: center;
-}
 
-.title {
-    padding: 30rpx 0;
-    flex: 1;
-    display: flex;
-    font-size: 32rpx;
-}
+    .title {
+        padding: 30rpx 0;
+        flex: 1;
+        display: flex;
+        font-size: 32rpx;
+    }
 
-.label {
-    margin-top: 8rpx;
-    font-size: 24rpx;
-}
+    .label {
+        margin-top: 8rpx;
+        font-size: 24rpx;
+    }
 
-.value {
-    display: flex;
-    font-size: 28rpx;
-    align-items: center;
-}
+    .value {
+        display: flex;
+        font-size: 28rpx;
+        align-items: center;
+    }
 
-.clickable:active {
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 20rpx;
-    opacity: 0.7;
+    &-clickable:active {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 20rpx;
+        opacity: 0.7;
+    }
 }
 
 </style>

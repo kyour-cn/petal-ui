@@ -190,7 +190,7 @@ const scrollToUpper = () => {
     </scroll-view>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-list {
     height: 100%;
@@ -198,17 +198,18 @@ const scrollToUpper = () => {
     flex-direction: column;
     flex: 1;
     position: relative;
+
+    .pull-loading {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+
+    .loading, .finished {
+        text-align: center;
+    }
 }
 
-.pull-loading {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-}
-
-.loading, .finished {
-    text-align: center;
-}
 </style>

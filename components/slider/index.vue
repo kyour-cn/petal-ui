@@ -119,35 +119,34 @@ const touchEnd = () => {
     </view>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .petal-slider {
     height: 20rpx;
     margin: 20rpx;
     background: #ccc;
     border-radius: 10rpx;
+
+    &-inner {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+    &-bar {
+        height: 100%;
+        background: #2550F7;
+        position: absolute;
+        border-radius: 10rpx 0 0 10rpx;
+    }
+    &-handle {
+        width: 40rpx;
+        height: 40rpx;
+        background: #fff;
+        box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.3);
+        border-radius: 20rpx;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
 
-.petal-slider-inner {
-    height: 100%;
-    width: 100%;
-    position: relative;
-}
-
-.petal-slider-bar {
-    height: 100%;
-    background: #2550F7;
-    position: absolute;
-    border-radius: 10rpx 0 0 10rpx;
-}
-
-.petal-slider-handle {
-    width: 40rpx;
-    height: 40rpx;
-    background: #fff;
-    box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.3);
-    border-radius: 20rpx;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
 </style>

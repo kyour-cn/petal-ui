@@ -48,7 +48,7 @@ watchEffect(() => {
     </view>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-popover-overlay {
     position: fixed;
@@ -62,39 +62,39 @@ watchEffect(() => {
 .petal-popover {
     position: relative;
     display: inline-block;
-}
 
-.popover-content {
-    position: absolute;
-    background-color: #fff;
-    z-index: 1000;
-    padding: 20rpx;
-    border-radius: 20rpx;
-    box-shadow: 0 0 50rpx rgba(0, 0, 0, 0.2);
-}
+    .popover-content {
+        position: absolute;
+        background-color: #fff;
+        z-index: 1000;
+        padding: 20rpx;
+        border-radius: 20rpx;
+        box-shadow: 0 0 50rpx rgba(0, 0, 0, 0.2);
+    }
 
-.popover-top {
-    bottom: 100%;
-    left: 50%;
-    transform: translate(-50%, -10rpx);
-}
+    .popover-top {
+        bottom: 100%;
+        left: 50%;
+        transform: translate(-50%, -10rpx);
+    }
 
-.popover-bottom {
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, 10rpx);
-}
+    .popover-bottom {
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, 10rpx);
+    }
 
-.popover-left {
-    right: 100%;
-    top: 50%;
-    transform: translate(-10rpx, -50%);
-}
+    .popover-left {
+        right: 100%;
+        top: 50%;
+        transform: translate(-10rpx, -50%);
+    }
 
-.popover-right {
-    left: 100%;
-    top: 50%;
-    transform: translate(10rpx, -50%);
+    .popover-right {
+        left: 100%;
+        top: 50%;
+        transform: translate(10rpx, -50%);
+    }
 }
 
 </style>

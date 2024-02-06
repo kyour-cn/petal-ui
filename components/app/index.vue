@@ -6,6 +6,11 @@ import {computed} from "vue";
 const puiStore = usePetalUiStore()
 
 const props = defineProps({
+    // 背景
+    background: {
+        type: String,
+        default: 'bg-page'
+    },
     _style: {
         type: Object,
         default: {}
@@ -13,22 +18,20 @@ const props = defineProps({
 })
 
 const style = computed(() => {
+    const {background, _style} = props
+
     return {
-        background: puiStore.theme['bg-page'],
-        ...props._style
+        minHeight: '100%',
+        background: puiStore.theme[background] || background,
+        ..._style
     }
 })
 
 </script>
 
 <template>
-    <view class="petal-app" :style="style">
-        <slot name="default"></slot>
+    <view :style="style">
+        <slot name="default"/>
     </view>
 </template>
 
-<style scoped>
-.petal-app {
-    min-height: 100%;
-}
-</style>
