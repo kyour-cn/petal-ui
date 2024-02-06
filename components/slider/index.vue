@@ -1,11 +1,14 @@
 <script setup>
 
 // TODO: 计划任务如下
-// 1. 动态主题色支持
+// √ 1. 动态主题色支持
 // 2. 增加icon属性
 // 3. 步长支持
 
 import {computed, getCurrentInstance, nextTick, ref} from 'vue';
+import {usePetalUiStore} from "../../stores/petal-ui";
+
+const puiStore = usePetalUiStore()
 
 const props = defineProps({
     modelValue: {
@@ -108,7 +111,7 @@ const touchEnd = () => {
 <template>
     <view class="petal-slider">
         <view class="petal-slider-inner">
-            <view class="petal-slider-bar" :style="{width: `${positionX}px`}"/>
+            <view class="petal-slider-bar" :style="{width: `${positionX}px`, background: puiStore.theme.primary}"/>
             <view
                 class="petal-slider-handle"
                 :style="{left: (positionX - 10) + 'px'}"
@@ -133,7 +136,6 @@ const touchEnd = () => {
     }
     &-bar {
         height: 100%;
-        background: #2550F7;
         position: absolute;
         border-radius: 10rpx 0 0 10rpx;
     }
