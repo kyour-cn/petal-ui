@@ -18,6 +18,7 @@ export const usePetalUiStore = defineStore('petal_ui', () => {
     // 设置是否开启深色模式
     const setDark = (val) => {
         dark.value = Boolean(val);
+        setStatusBarStyle(dark.value)
     }
 
     // 主题颜色

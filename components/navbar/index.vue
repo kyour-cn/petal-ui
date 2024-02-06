@@ -51,11 +51,6 @@ const props = defineProps({
     rightIcon: {
         type: String,
         default: ''
-    },
-    // 暗黑模式是否添加背景
-    darkBg: {
-        type: Boolean,
-        default: true
     }
 })
 
@@ -96,16 +91,6 @@ const style = computed(() => {
         class="petal-navbar-placeholder"
         :style="{
             paddingTop: style.paddingTop
-        }"
-    />
-    <!-- 暗黑模式状态栏背景 -->
-    <view
-        v-if="props.darkBg && puiStore.dark"
-        class="petal-navbar-bar"
-        :style="{
-            zIndex: props.zIndex + 1,
-            height: style.paddingTop,
-            background: puiStore.theme['bg-body'],
         }"
     />
     <view
@@ -157,12 +142,6 @@ const style = computed(() => {
 .petal-navbar-placeholder {
     height: 88rpx;
     width: 100%;
-}
-
-.petal-navbar-bar {
-    position: fixed;
-    width: 100%;
-    top: 0;
 }
 
 .petal-navbar {
