@@ -44,7 +44,7 @@ const toggle = () => {
 
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .petal-radio {
     width: 40rpx;
