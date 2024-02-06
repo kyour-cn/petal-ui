@@ -1,7 +1,7 @@
 <script setup>
 
-import {computed, ref, watch} from "vue";
-import {usePetalUiStore} from "../../stores/petal-ui";
+import {computed, ref, watch} from "vue"
+import {usePetalUiStore} from "../../stores/petal-ui"
 import {normalizePadding, px2Rpx} from "../../lib/utils.js"
 
 const puiStore = usePetalUiStore()
@@ -141,19 +141,19 @@ const style = computed(() => {
             padding[0] = 0
             // 适配安全区域
             obj.paddingTop = px2Rpx(puiStore.windowInfo.safeAreaInsets.top, puiStore.windowInfo.screenWidth) + padding[0] + 'rpx'
-            break;
+            break
         case 'bottom':
             obj.bottom = offset.value + 'rpx'
             obj.borderRadius = '40rpx 40rpx 0 0'
             padding[2] = 0
             // 适配安全区域
             obj.paddingBottom = px2Rpx(puiStore.windowInfo.safeAreaInsets.bottom, puiStore.windowInfo.screenWidth) + padding[2] + 'rpx'
-            break;
+            break
         case 'center':
         default:
             obj.top = 'calc(50% - ' + (props.height / 2) + 'rpx)'
             obj.borderRadius = '40rpx'
-            break;
+            break
     }
     obj.margin = padding.join('rpx ') + 'rpx'
     return obj

@@ -1,8 +1,8 @@
 <script setup>
 
 import PuiIcon from "../icon"
-import {usePetalUiStore} from "../../stores/petal-ui";
-import {computed, inject, ref} from "vue";
+import {usePetalUiStore} from "../../stores/petal-ui"
+import {computed, inject, ref} from "vue"
 
 const props = defineProps({
     // 默认图标

@@ -1,7 +1,7 @@
 <script setup>
 
-import {computed, inject, ref} from "vue";
-import {usePetalUiStore} from "../../stores/petal-ui";
+import {computed, inject, ref} from "vue"
+import {usePetalUiStore} from "../../stores/petal-ui"
 
 const props = defineProps({
     title: {

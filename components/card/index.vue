@@ -1,8 +1,8 @@
 <script setup>
 
-import {computed} from "vue";
-import {usePetalUiStore} from "../../stores/petal-ui";
-import {normalizePaddingString} from "../../lib/utils";
+import {computed} from "vue"
+import {usePetalUiStore} from "../../stores/petal-ui"
+import {normalizePaddingString} from "../../lib/utils"
 
 const puiStore = usePetalUiStore()
 

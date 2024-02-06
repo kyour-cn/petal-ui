@@ -30,7 +30,7 @@ const props = defineProps({
 
 const emits = defineEmits([
     "click"
-]);
+])
 
 const onClick = () => {
     emits('click')

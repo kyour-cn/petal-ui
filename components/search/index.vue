@@ -2,8 +2,8 @@
 import PuiIcon from "../icon"
 import PuiButton from "../button"
 import PuiText from "../text"
-import {computed} from "vue";
-import {usePetalUiStore} from "../../stores/petal-ui";
+import {computed} from "vue"
+import {usePetalUiStore} from "../../stores/petal-ui"
 
 const puiStore = usePetalUiStore()
 

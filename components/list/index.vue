@@ -2,7 +2,7 @@
 import PuiLoading from '../loading'
 import PuiEmpty from '../empty'
 import {computed, ref, toRefs, watch} from 'vue'
-import {usePetalUiStore} from "../../stores/petal-ui";
+import {usePetalUiStore} from "../../stores/petal-ui"
 
 const puiStore = usePetalUiStore()
 

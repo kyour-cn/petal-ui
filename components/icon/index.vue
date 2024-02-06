@@ -41,7 +41,7 @@ const onClick = () => {
 
 const style = computed(() => {
     return {
-        color: puiStore.theme[props.color] ? puiStore.theme[props.color] : props.color,
+        color: puiStore.theme[props.color] || props.color,
         fontSize: props.size + 'rpx',
         ...props._style
     }

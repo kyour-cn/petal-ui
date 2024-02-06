@@ -5,8 +5,8 @@
 // 2. 增加icon属性
 // 3. 步长支持
 
-import {computed, getCurrentInstance, nextTick, ref} from 'vue';
-import {usePetalUiStore} from "../../stores/petal-ui";
+import {computed, getCurrentInstance, nextTick, ref} from 'vue'
+import {usePetalUiStore} from "../../stores/petal-ui"
 
 const puiStore = usePetalUiStore()
 
@@ -41,7 +41,7 @@ const allWidth = ref(0)
 
 nextTick(() => {
     let view = uni.createSelectorQuery().in(instance)
-        .select(".petal-slider-inner");
+        .select(".petal-slider-inner")
     view.fields({
         size: true,
         scrollOffset: true,
@@ -68,7 +68,7 @@ nextTick(() => {
             }
         }
         value.value = newValue
-    }).exec();
+    }).exec()
 })
 
 const value = computed({

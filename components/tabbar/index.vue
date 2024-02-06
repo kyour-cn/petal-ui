@@ -1,7 +1,7 @@
 <script setup>
 
-import {computed, onMounted, provide} from "vue";
-import {usePetalUiStore} from "../../stores/petal-ui";
+import {computed, onMounted, provide} from "vue"
+import {usePetalUiStore} from "../../stores/petal-ui"
 
 const puiStore = usePetalUiStore()
 
@@ -46,7 +46,7 @@ provide('allowChange', props.allowChange)
 let indexCount = 1
 provide('index', () => {
     return indexCount++
-});
+})
 
 onMounted(() => {
     // 重置index索引

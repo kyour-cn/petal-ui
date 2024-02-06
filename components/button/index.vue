@@ -3,8 +3,8 @@
 // TODO: 计划任务如下
 // 1. 更多按钮样式支持
 
-import {computed, ref} from "vue";
-import {usePetalUiStore} from "../../stores/petal-ui";
+import {computed, ref} from "vue"
+import {usePetalUiStore} from "../../stores/petal-ui"
 
 const puiStore = usePetalUiStore()
 
@@ -67,7 +67,7 @@ const emits = defineEmits([
     "click",
     "touchstart",
     "touchend"
-]);
+])
 
 const onClick = () => {
     emits('click')
@@ -99,7 +99,7 @@ const sizeObj = computed(() => {
     }
 })
 
-let isHover = ref(false);
+let isHover = ref(false)
 
 const classList = computed(() => {
     const list = ['petal-btn']
@@ -116,7 +116,7 @@ const classList = computed(() => {
 const style = computed(() => {
 
     let color = props.color || 'white',
-        background = puiStore.theme[props.background] || props.background;
+        background = puiStore.theme[props.background] || props.background
 
     if (puiStore.theme[color]) {
         color = puiStore.theme[color]

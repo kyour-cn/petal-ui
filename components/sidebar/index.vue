@@ -1,7 +1,7 @@
 <script setup>
 
-import {computed, onMounted, provide} from "vue";
-import {usePetalUiStore} from "../../stores/petal-ui";
+import {computed, onMounted, provide} from "vue"
+import {usePetalUiStore} from "../../stores/petal-ui"
 
 const puiStore = usePetalUiStore()
 
@@ -29,7 +29,7 @@ const emits = defineEmits([
 let indexCount = 0
 provide('index', () => {
     return indexCount++
-});
+})
 
 // 伪需求，实际上应该用不到，暂且保留
 onMounted(() => {
@@ -50,7 +50,7 @@ provide('activeIndex', value)
 
 const style = computed(() => {
     return {
-        backgroundColor: puiStore.theme[props.background] ? puiStore.theme[props.background] : props.background,
+        backgroundColor: puiStore.theme[props.background] || props.background,
         ...props._style
     }
 })

@@ -1,6 +1,6 @@
 <script setup>
-import {computed} from 'vue';
-import {usePetalUiStore} from "../../stores/petal-ui";
+import {computed} from 'vue'
+import {usePetalUiStore} from "../../stores/petal-ui"
 
 const puiStore = usePetalUiStore()
 
@@ -25,7 +25,7 @@ const toggle = () => {
     if (props.disabled) {
         return
     }
-    value.value = !value.value;
+    value.value = !value.value
 }
 
 const style = computed(() => {

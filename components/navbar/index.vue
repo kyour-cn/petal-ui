@@ -1,9 +1,8 @@
 <script setup>
 
-import {computed} from "vue";
-
-import {usePetalUiStore} from "../../stores/petal-ui";
-import PuiIcon from "../icon/index.vue";
+import {computed} from "vue"
+import {usePetalUiStore} from "../../stores/petal-ui"
+import PuiIcon from "../icon/index.vue"
 
 const puiStore = usePetalUiStore()
 
@@ -57,7 +56,7 @@ const props = defineProps({
 const emits = defineEmits([
     "click-left",
     "click-right"
-]);
+])
 
 const clickLeft = () => {
     emits('click-left')

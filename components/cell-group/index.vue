@@ -1,7 +1,7 @@
 <script setup>
 
-import {computed} from "vue";
-import {usePetalUiStore} from "../../stores/petal-ui";
+import {computed} from "vue"
+import {usePetalUiStore} from "../../stores/petal-ui"
 
 const puiStore = usePetalUiStore()
 
