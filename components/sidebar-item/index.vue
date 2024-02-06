@@ -50,13 +50,14 @@ export default {
 
 <template>
     <view
-        :class="{
-            'petal-sidebar-item':true,
-            'petal-sidebar-item-active': isActive
-        }"
+        class="petal-sidebar-item"
         :style="style"
         @click="onClick"
     >
+        <view
+            class="petal-sidebar-item-before"
+            :style="{background: isActive ? puiStore.theme.primary : ''}"
+        />
         <text
             class="petal-sidebar-title"
             :style="titleStyle"
@@ -75,15 +76,10 @@ export default {
     display: flex;
     align-items: center;
 
-    &:before {
+    &-before {
         content: '';
         width: 6rpx;
         height: 40rpx;
-    }
-
-
-    &-active:before {
-        background: #2550F7;
     }
 
     .petal-sidebar-title {
