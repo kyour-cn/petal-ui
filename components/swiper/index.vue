@@ -13,9 +13,15 @@ const props = defineProps({
         type: Number,
         default: 1000
     },
+    // 轮播图列表
     list: {
         type: Array,
         default: () => []
+    },
+    // 列表key，默认留空则表示item就是图片url
+    listKey: {
+        type: String,
+        default: ''
     },
     vertical: {
         type: Boolean,
@@ -57,7 +63,7 @@ const props = defineProps({
         <swiper-item v-if="props.list.length > 0" v-for="(item, key) in props.list" :key="key" class="swiper-item">
             <image
                 class="swiper-item-image"
-                :src="item.src"
+                :src="props.listKey ? item[props.listKey] :item"
                 :style="{
                     margin: '0 '+props.itemMargin + 'rpx',
                     borderRadius: props.radius + 'rpx',
