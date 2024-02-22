@@ -27,6 +27,10 @@ const props = defineProps({
     disabled: {
         type: Boolean,
         default: false
+    },
+    button: {
+        type: Boolean,
+        default: true
     }
 })
 
@@ -81,18 +85,20 @@ const style = computed(() => {
                 @confirm="onSearch"
             />
         </view>
-        <view class="petal-search-btn">
+        <view v-if="props.button" class="petal-search-btn">
             <view :style="{borderRight: puiStore.theme['divider'] + ' solid 2rpx'}">&nbsp;</view>
-            <PuiButton
-                type="primary"
-                size="small"
-                background="rgba(0,0,0,0)"
-                color="primary"
-                :font-size="26"
-                @click="onSearch"
-            >
-                搜索
-            </PuiButton>
+            <slot name="button">
+                <PuiButton
+                    type="primary"
+                    size="small"
+                    background="rgba(0,0,0,0)"
+                    color="primary"
+                    :font-size="26"
+                    @click="onSearch"
+                >
+                    搜索
+                </PuiButton>
+            </slot>
         </view>
     </view>
 </template>
