@@ -1,5 +1,7 @@
 <script setup>
 
+import {formatSizeUnit} from "../../lib/utils.js"
+
 const props = defineProps({
     autoplay: {
         type: Boolean,
@@ -44,6 +46,16 @@ const props = defineProps({
     radius: {
         type: Number,
         default: 0
+    },
+    // 首尾是否采用衔接滑动
+    circular: {
+        type: Boolean,
+        default: false
+    },
+    // 轮播图高度
+    height: {
+        type: [String, Number],
+        default: 300
     }
 })
 
@@ -59,6 +71,10 @@ const props = defineProps({
         :vertical="props.vertical"
         :previous-margin="props.previousMargin + 'rpx'"
         :next-margin="props.nextMargin + 'rpx'"
+        :circular="props.circular"
+        :style="{
+            height: formatSizeUnit(props.height)
+        }"
     >
         <swiper-item v-if="props.list.length > 0" v-for="(item, key) in props.list" :key="key" class="swiper-item">
             <image
