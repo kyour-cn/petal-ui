@@ -36,6 +36,11 @@ const props = defineProps({
         type: Number,
         default: 999
     },
+    // 背景颜色 (默认取页面背景色)
+    background: {
+        type: String,
+        default: ''
+    },
     // 左侧返回箭头
     leftArrow: {
         type: Boolean,
@@ -76,7 +81,7 @@ const style = computed(() => {
 
     return {
         titleColor: puiStore.theme['title'],
-        bgColor: puiStore.theme['bg-page'],
+        background: puiStore.theme[props.background] || props.background,
         paddingTop: puiStore.windowInfo.safeAreaInsets.top + 'px',
         leftIcon
     }
@@ -95,7 +100,7 @@ const style = computed(() => {
     <view
         class="petal-navbar"
         :style="{
-            background: style.bgColor,
+            background: style.background,
             zIndex: props.zIndex,
             paddingTop: style.paddingTop
         }"
