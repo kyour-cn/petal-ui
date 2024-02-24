@@ -39,7 +39,7 @@ const props = defineProps({
     // 背景颜色 (默认取页面背景色)
     background: {
         type: String,
-        default: ''
+        default: 'bg-page'
     },
     // 左侧返回箭头
     leftArrow: {
