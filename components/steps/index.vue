@@ -1,22 +1,34 @@
 <script setup>
+
+import {usePetalUiStore} from "../../stores/petal-ui"
+
+const puiStore = usePetalUiStore()
+
 const props = defineProps({
+    // 节点列表
     steps: {
         type: Array,
-        default: () => []
+        default: () => [
+            // { label: '步骤1'}
+        ]
     },
+    // 当前步骤
     current: {
         type: Number,
         default: 0
     },
+    // 线条颜色
     lineColor: {
         type: String,
-        default: '#007aff'
+        default: 'primary'
     },
+    // 圆点颜色
     circleColor: {
         type: String,
-        default: '#007aff'
+        default: 'primary'
     }
 })
+
 </script>
 
 <template>
@@ -26,18 +38,25 @@ const props = defineProps({
                 <view
                     class="step-line"
                     :style="{
-                    background: index === 0 ? 'transparent' : props.lineColor
-                }"/>
+                        background: index === 0 ?
+                            'transparent' :
+                            (props.current < index + 1 ? puiStore.theme['divider'] : puiStore.theme[props.lineColor])
+                    }"
+                />
                 <view
                     class="step-circle"
                     :style="{
-                    background: props.circleColor
-                }"/>
+                        background: props.current < index + 1 ? puiStore.theme['divider'] : puiStore.theme[props.circleColor]
+                    }"
+                />
                 <view
                     class="step-line"
                     :style="{
-                    background: index === props.steps.length - 1 ? 'transparent' : props.lineColor
-                }"/>
+                        background: index === props.steps.length - 1 ?
+                        'transparent' :
+                        (props.current < index + 2 ? puiStore.theme['divider'] : puiStore.theme[props.lineColor])
+                    }"
+                />
             </view>
             <view class="step-text">
                 {{ item.label }}
