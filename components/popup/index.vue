@@ -184,6 +184,12 @@ const overlayStyle = computed(() => {
             @click.stop=""
         >
             <view class="popup-body">
+                <view
+                    v-if="props.title"
+                    class="popup-title"
+                >
+                    <text>{{ props.title }}</text>
+                </view>
                 <slot name="default"/>
             </view>
         </view>
@@ -207,6 +213,12 @@ const overlayStyle = computed(() => {
 
     .popup-body {
         padding: 20rpx;
+    }
+    .popup-title {
+        padding-left: 20rpx;
+        padding-bottom: 20rpx;
+        font-size: 40rpx;
+        font-weight: bold;
     }
 }
 
