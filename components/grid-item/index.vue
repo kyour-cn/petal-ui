@@ -23,5 +23,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 5rpx;
 }
 </style>
