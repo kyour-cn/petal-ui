@@ -17,6 +17,11 @@ const props = defineProps({
     key: {
         type: String,
         default: 'name'
+    },
+    // 样式，支持 default,line
+    type: {
+        type: String,
+        default: 'default'
     }
 })
 
@@ -55,7 +60,10 @@ const style = computed(() => {
 
 <template>
     <scroll-view
-        class="hide-scrollbar"
+        :class="[
+            'hide-scrollbar',
+            props.type
+        ]"
         :scroll-x="true"
         :show-scrollbar="false"
         :scroll-with-animation="true"
@@ -89,6 +97,9 @@ const style = computed(() => {
     flex-direction: row;
     align-items: center;
 
+}
+
+.default {
     .tab-item {
         line-height: 50rpx;
         font-size: 35rpx;
@@ -99,6 +110,30 @@ const style = computed(() => {
     .active {
         font-size: 45rpx;
         margin-top: 0;
+    }
+}
+
+.line {
+    .tab-item {
+        line-height: 50rpx;
+        font-size: 35rpx;
+        margin: 15rpx 10rpx 0 10rpx;
+        padding-bottom: 10rpx;
+        white-space: nowrap;
+    }
+    .active {
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4rpx;
+            width: 60%;
+            margin: auto;
+            background-color: #0051ff;
+        }
     }
 }
 
