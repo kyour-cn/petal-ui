@@ -123,6 +123,7 @@ const style = computed(() => {
     }
     .active {
         position: relative;
+        font-weight: bold;
         &::after {
             content: '';
             position: absolute;
