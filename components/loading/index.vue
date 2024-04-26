@@ -9,7 +9,7 @@ const props = defineProps({
     },
     src: {
         type: String,
-        default: 'https://qiniu.kyour.cn/petal-ui/loading.webp'
+        default: '//qiniu.kyour.cn/petal-ui/loading.webp'
     }
 })
 

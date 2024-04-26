@@ -14,7 +14,7 @@ const props = defineProps({
     },
     src: {
         type: String,
-        default: 'https://qiniu.kyour.cn/petal-ui/empty-01.svg'
+        default: '//qiniu.kyour.cn/petal-ui/empty-01.svg'
     }
 })
 
