@@ -187,6 +187,9 @@ const overlayStyle = computed(() => {
                 <view
                     v-if="props.title"
                     class="popup-title"
+                    :style="{
+                        background: puiStore.theme['bg-body']
+                    }"
                 >
                     <text>{{ props.title }}</text>
                 </view>
@@ -211,14 +214,17 @@ const overlayStyle = computed(() => {
     width: 100%;
     overflow-y: scroll;
 
-    .popup-body {
-        padding: 20rpx;
-    }
     .popup-title {
-        padding-left: 20rpx;
-        padding-bottom: 20rpx;
+        padding: 20rpx;
         font-size: 40rpx;
         font-weight: bold;
+        // 固定在顶部
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
+    .popup-body {
+        padding: 0 20rpx;
     }
 }
 
