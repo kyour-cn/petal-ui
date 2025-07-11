@@ -1,6 +1,6 @@
 {
   "name": "petal-ui",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "petal-ui",
   "keywords": ["petal-ui", "uniapp", "uniapp-ui", "vue3"],
   "main": "lib/index.js",
