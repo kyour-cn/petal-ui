@@ -15,8 +15,8 @@
   },
   "homepage": "https://github.com/kyour-cn/petal-ui#readme",
   "devDependencies": {
-    "vue": "^3.3.7",
-    "pinia": "^2.1.7",
-    "sass": "^1.70.0"
+    "vue": "^3.4.21",
+    "pinia": "^3.0.3",
+    "sass": "1.78.*"
   }
 }
